@@ -38,6 +38,7 @@ export default function InputWithIcon() {
   );
 }
 
+export default login;
 if (document.getElementById('Login')) {
     ReactDOM.render(<Login />, document.getElementById('Login'));
 }

@@ -5,6 +5,10 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </div>
 
+<div id="Login">
+  <script src="{{ asset('js/app.js') }}"></script>
+</div>
+
 <h1>HEllo Page admin</h1>
 </div>
 <div class="container">
