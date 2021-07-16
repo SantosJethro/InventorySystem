@@ -10,10 +10,14 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-    
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Custom Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        
+        <script src="js/app.js" defer></script>
         <script src="{{ asset('js/app.js') }}"></script>
+
     </head>
     <body>
        

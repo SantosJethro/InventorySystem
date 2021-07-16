@@ -9,7 +9,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ReactDOM from 'react-dom';
 
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -23,8 +22,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+
 export default function ButtonAppBar() {
   const classes = useStyles();
+  
   
 
   return (
@@ -39,8 +40,9 @@ export default function ButtonAppBar() {
     <Button color="inherit" href="./user">user</Button>
     </Typography>
  
-    <Button color="inherit" href="./Login">Login</Button>
-    <Button color="inherit" href="./LogIn">Logout</Button>
+    <Button color="inherit" href="./LogIn">Login</Button>
+    <Button color="inherit" href="./LogOut">Logout</Button>
+    
   </Toolbar>
 </AppBar>
     </div>

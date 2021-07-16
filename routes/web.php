@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\userAuth;
 use App\Models\Users;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,9 +29,7 @@ Route::get('/user', function () {
     return view('userLogin');
 });
 
-Route::get('/LogIn', function () {
-    return view('LogIn');
-});
+
 
 Route::get('/admin', function () {
     $select = DB::select('select * from users');
@@ -38,27 +37,53 @@ Route::get('/admin', function () {
     //return view('adminLogin');
 });
 
-Route::get('/loginProcess/{username}/{password}', function ($Username,$Password) {
-    $validator = Validator::make(request()->all(),[
-        'Username' => 'required',
-        'Password' => 'required'
-           ]);
-    if($validator->fails()){
-        return redirect()->back()->withErrors($validator);
-    }
-    $userName = request('Name');
-    $Password = request('Password');
-    $Check=DB::select( "select * from users 
-    where username='$userName' 
-    and password='$Password';" );
-    if($Check){
-
-     //$select = DB::select('select * from users');
-     return view ('adminLogin')->with('name',$Check);
-    }else {
-        echo "Error";
-    }
+Route::get('/LogIn', function () {
+    
+        session()->pull('Password');
+        session()->pull('Username');
+        session()->pull('IsLogIn');
+        session()->pull('Id');
+    
+    return view('LogIn');
 });
+
+Route::get('/LogOut', function () {
+    
+    
+        session()->pull('Password');
+        session()->pull('Username');
+        session()->pull('IsLogIn');
+        session()->pull('Id');
+        
+    
+    return redirect('LogIn');
+});
+//login
+//Route::post("user",[userAuth::class,'userLogin']);
+Route::post('userLog', 'App\Http\Controllers\userAuth@userLogin');
+Route::view("userLogin","userLogin");
+
+// Route::get('/loginProcess/{username}/{password}', function ($Username,$Password) {
+//     $validator = Validator::make(request()->all(),[
+//         'Username' => 'required',
+//         'Password' => 'required'
+//            ]);
+//     if($validator->fails()){
+//         return redirect()->back()->withErrors($validator);
+//     }
+//     $userName = request('Name');
+//     $Password = request('Password');
+//     $Check=DB::select( "select * from users 
+//     where username='$userName' 
+//     and password='$Password';" );
+//     if($Check){
+
+//      //$select = DB::select('select * from users');
+//      return view ('adminLogin')->with('name',$Check);
+//     }else {
+//         echo "Error";
+//     }
+// });
 
 Route::get('/welcome', function () {
     return view('welcome');

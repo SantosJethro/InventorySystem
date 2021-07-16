@@ -17,6 +17,7 @@ function Example() {
     
     const classes = useStyles();
     return (
+      
         <div>
             <Navbar />
             {/* <Login /> */}

@@ -1,3 +1,10 @@
+@extends('layouts.header')
+
+@section('content')
+      <div id="app">
+          <script src="{{ asset('js/app.js') }}"></script>
+      </div>
+
 @if($errors->any())
 <div style="color:red">
         <ul>
@@ -7,22 +14,47 @@
         </ul>
 </div>
 @endif
-<form action="./createUsers" method="POST">
-    @csrf
-    <label for="Name">Name</label>
-    <input type="text" name="Name">
 <br>
-    <label for="Username">Username</label>
-    <input type="text" name="Username">
-    <br>
-    <label for="Password">Password</label>
-    <input type="text" name="Password">
-    <br>
-    <label for="UserType">Usertype</label>
-    <input type="text" name="UserType">
-    <br>
-    <label for="Allow">Allow</label>
-    <input type="text" name="Allow">
-    <br>
-    <button>Create</button>
-</form>
+    <div class="container">
+        <div class="col-3"></div>
+        <div class="col-5">
+
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <form action="./createUsers" method="POST" class="">
+                        @csrf
+                        <div class="form-group">
+                            <label for="Name">Name</label>
+                            <input type="text" class="form-control" name="Name">
+                        </div>
+                    <br>
+                        <div class="form-group">
+                            <label for="Username">Username</label>
+                            <input type="text" class="form-control" name="Username">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <input type="text" class="form-control" name="Password">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="UserType">Usertype</label>
+                            <input type="text" class="form-control" name="UserType">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="Allow">Allow</label>
+                            <input type="text" class="form-control" name="Allow">
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-success">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+    </div>
+
+
+@endsection

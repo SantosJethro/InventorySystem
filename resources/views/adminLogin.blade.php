@@ -5,13 +5,13 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </div>
 
-<div id="Login">
-  <script src="{{ asset('js/app.js') }}"></script>
-</div>
 
 <h1>HEllo Page admin</h1>
 </div>
+
+
 <div class="container">
+  <a href="./createUsers"><button class="btn btn-primary">CREATE NEW USER</button></a>
     <table class="table table-dark table-striped">
         <thead>
           <tr>
@@ -20,7 +20,6 @@
             <th>Username</th>
             <th>Password</th>
             <th>Usertype</th>
-            <th>Tries</th>
             <th>Allow</th>
             <th>Created_at</th>
             <th>Updated_at</th>
@@ -38,7 +37,6 @@
     <td>{{ $data->Username}}</td>
     <td>{{ $data->Password}}</td>
     <td>{{ $data->UserType}}</td>
-    <td>{{ $data->Tries}}</td>
     <td>{{ $data->Allow}}</td>
     <td>{{ $data->created_at}}</td>
     <td>{{ $data->updated_at}}</td>

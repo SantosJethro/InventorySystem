@@ -4,7 +4,9 @@
 <div id="app">
     <script src="{{ asset('js/app.js') }}"></script>
 </div>
-       <h1>Hello Page User
+       <h1>Hello , {{session('Username')}}, password is , {{session('Password')}},
+        You Are ,{{session('IsLogIn')}}, Your Id , {{session('Id')}}
        </h1>
+
     </body>
 @endsection
