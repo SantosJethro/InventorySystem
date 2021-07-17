@@ -8,7 +8,7 @@
       <div id="Login">
      
     </div>
-    <div class="container">
+    {{-- <div class="container">
       <div class="row">
         <div class="col"></div>
         <div class="col"></div>
@@ -40,6 +40,6 @@
         </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     
 @endsection

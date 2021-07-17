@@ -16,4 +16,6 @@ require('./components/navbar');
 require('./components/Example');
 require('./components/DisplayUser');
 require('./components/formLogin');
+require('./components/adminPage');
+require('./components/CreateUserF');
 // require('./components/app1');

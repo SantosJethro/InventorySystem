@@ -1,10 +1,11 @@
 @extends('layouts.header')
 
 @section('content')
-<div id="app">
-    <script src="{{ asset('js/app.js') }}"></script>
-</div>
 
+
+<div id="adminPage">
+
+</div>
 
 <h1>HEllo Page admin</h1>
 </div>

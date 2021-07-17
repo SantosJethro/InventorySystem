@@ -2213,6 +2213,99 @@ var Button = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/esm/DialogContent/DialogContent.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/DialogContent/DialogContent.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "styles": () => (/* binding */ styles),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      flex: '1 1 auto',
+      WebkitOverflowScrolling: 'touch',
+      // Add iOS momentum scrolling.
+      overflowY: 'auto',
+      padding: '8px 24px',
+      '&:first-child': {
+        // dialog without title
+        paddingTop: 20
+      }
+    },
+
+    /* Styles applied to the root element if `dividers={true}`. */
+    dividers: {
+      padding: '16px 24px',
+      borderTop: "1px solid ".concat(theme.palette.divider),
+      borderBottom: "1px solid ".concat(theme.palette.divider)
+    }
+  };
+};
+var DialogContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function DialogContent(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      _props$dividers = props.dividers,
+      dividers = _props$dividers === void 0 ? false : _props$dividers,
+      other = (0,_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["classes", "className", "dividers"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__.default)(classes.root, className, dividers && classes.dividers),
+    ref: ref
+  }, other));
+});
+ true ? DialogContent.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The content of the component.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+
+  /**
+   * Display the top and bottom dividers.
+   */
+  dividers: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_styles_withStyles__WEBPACK_IMPORTED_MODULE_5__.default)(styles, {
+  name: 'MuiDialogContent'
+})(DialogContent));
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/esm/FilledInput/FilledInput.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/FilledInput/FilledInput.js ***!
@@ -17836,7 +17929,11 @@ __webpack_require__(/*! ./components/Example */ "./resources/js/components/Examp
 
 __webpack_require__(/*! ./components/DisplayUser */ "./resources/js/components/DisplayUser.js");
 
-__webpack_require__(/*! ./components/formLogin */ "./resources/js/components/formLogin.js"); // require('./components/app1');
+__webpack_require__(/*! ./components/formLogin */ "./resources/js/components/formLogin.js");
+
+__webpack_require__(/*! ./components/adminPage */ "./resources/js/components/adminPage.js");
+
+__webpack_require__(/*! ./components/CreateUserF */ "./resources/js/components/CreateUserF.js"); // require('./components/app1');
 
 /***/ }),
 
@@ -17883,6 +17980,309 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateUserF.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/CreateUserF.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/TextField.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
+  return {
+    margin: {
+      margin: theme.spacing(1)
+    },
+    root: {
+      flexGrow: 1
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary
+    },
+    avatar: {
+      backgroundColor: '#03a9f4'
+    },
+    title: {
+      variant: 'h1'
+    }
+  };
+});
+
+var CreateUserF = /*#__PURE__*/function (_Component) {
+  _inherits(CreateUserF, _Component);
+
+  var _super = _createSuper(CreateUserF);
+
+  function CreateUserF(props) {
+    var _this;
+
+    _classCallCheck(this, CreateUserF);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "Username", function (event) {
+      _this.setState({
+        username: event.target.value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "Password", function (event) {
+      _this.setState({
+        password: event.target.value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "LogInU", function () {
+      var packets = {
+        username: _this.state.username,
+        password: _this.state.password
+      };
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post('./userLog', packets // ,{headers: {
+      //     "Content-Type": "form-data"
+      //   }}
+      ).then(function (response) {
+        // response => alert(JSON.stringify(response.data))
+        var _response$data = response.data,
+            id = _response$data.id,
+            allow = _response$data.allow,
+            userUN = _response$data.userUN,
+            userP = _response$data.userP,
+            userT = _response$data.userT;
+        window.location = "./user";
+      }) // .then(
+      //    response => alert(JSON.stringify(response.data))
+      //     )
+      ["catch"](function (error) {
+        console.log("ERROR:: ", error.response.data);
+      }); // axios({
+      //   method: 'post',
+      //   url: 'http://localhost/InventorySystem1/public/userLog',
+      //   data: {
+      //     username: this.state.username,
+      //     password: this.state.password,
+      //   }
+      // })
+    });
+
+    _this.state = {
+      Username: '',
+      Password: ''
+    };
+    _this.Username = _this.Username;
+    _this.Password = _this.Password;
+    _this.Login = _this.Login;
+    return _this;
+  }
+
+  _createClass(CreateUserF, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "container py-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "row justify-content-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "col-md-6",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "card",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "card-header",
+                children: "USER CREATION"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "card-body",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("form", {
+                  onSubmit: this.CreateUser,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    className: "col-md-10",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "form-group",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                        container: true,
+                        spacing: 1,
+                        alignItems: "flex-end",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                            item: true,
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_6__.default, {
+                              label: "Enter Username",
+                              id: "Username",
+                              name: "Username",
+                              onChange: this.Username,
+                              type: "text"
+                            })
+                          })
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "form-group",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                        container: true,
+                        spacing: 1,
+                        alignItems: "flex-end",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_6__.default, {
+                          label: "Enter Password",
+                          id: "Password",
+                          name: "Password",
+                          onChange: this.Password,
+                          type: "password"
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "form-group",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                        className: useStyles.margin,
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                          container: true,
+                          spacing: 1,
+                          alignItems: "flex-end",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                            item: true,
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_6__.default, {
+                              id: "Name",
+                              label: "Enter Full Name",
+                              onChange: this.name,
+                              type: "text",
+                              fullWidth: true
+                            })
+                          })
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "form-group",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                        className: useStyles.margin,
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                          container: true,
+                          spacing: 1,
+                          alignItems: "flex-end",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                            item: true,
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                              children: ["USERTYPE", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                                value: this.state.value,
+                                onChange: this.handleChange,
+                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                                  value: 1,
+                                  children: "Admin"
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                                  value: 2,
+                                  children: "STOCKMAN"
+                                })]
+                              })]
+                            })
+                          })
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "form-group",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                        className: useStyles.margin,
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                          container: true,
+                          spacing: 1,
+                          alignItems: "flex-end",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                            item: true,
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
+                              children: ["ALLOW LOGIN", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+                                value: this.state.value,
+                                onChange: this.handleChange,
+                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                                  value: 1,
+                                  children: "YES"
+                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+                                  value: 2,
+                                  children: "NO"
+                                })]
+                              })]
+                            })
+                          })
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                      container: true,
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                        item: true,
+                        xs: 5
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+                        item: true,
+                        xs: 5,
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_7__.default, {
+                          type: "submit",
+                          children: "Create User"
+                        })
+                      })]
+                    })]
+                  })
+                })
+              })]
+            })
+          })
+        })
+      });
+    }
+  }]);
+
+  return CreateUserF;
+}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CreateUserF);
+
+if (document.getElementById('CreateUser')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(CreateUserF, {}), document.getElementById('CreateUser'));
+}
 
 /***/ }),
 
@@ -18096,6 +18496,135 @@ if (document.getElementById('app')) {
 
 /***/ }),
 
+/***/ "./resources/js/components/adminPage.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/adminPage.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar */ "./resources/js/components/navbar.js");
+/* harmony import */ var _CreateUserF__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CreateUserF */ "./resources/js/components/CreateUserF.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var _material_ui_core_Modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Modal */ "./node_modules/@material-ui/core/esm/Modal/Modal.js");
+/* harmony import */ var _material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/DialogContent */ "./node_modules/@material-ui/core/esm/DialogContent/DialogContent.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+ // import Login from './formLogin';
+
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default)(function (theme) {
+  return {
+    root: {
+      maxWidth: 345
+    },
+    media: {
+      height: 140
+    },
+    paper: {
+      position: 'absolute',
+      width: 400,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3)
+    }
+  };
+});
+
+function Adminpage() {
+  var classes = useStyles();
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      open = _React$useState2[0],
+      setOpen = _React$useState2[1];
+
+  var handleOpen = function handleOpen() {
+    setOpen(true);
+  };
+
+  var handleClose = function handleClose() {
+    setOpen(false);
+  };
+
+  var body = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    style: {},
+    className: classes.paper,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+      id: "simple-modal-title",
+      children: "Text in a modal"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      id: "simple-modal-description",
+      children: "Duis mollis, est non commodo luctus, nisi erat porttitor ligula."
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Adminpage, {})]
+  });
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_navbar__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__.default, {
+      container: true,
+      spacing: 3,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__.default, {
+        item: true,
+        xs: 5
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__.default, {
+        item: true,
+        xs: 8,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          type: "button",
+          variant: "contained",
+          color: "primary",
+          onClick: handleOpen,
+          children: "Create Users"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_Modal__WEBPACK_IMPORTED_MODULE_7__.default, {
+          open: open,
+          onClose: handleClose,
+          "aria-labelledby": "simple-modal-title",
+          "aria-describedby": "simple-modal-description",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_8__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_CreateUserF__WEBPACK_IMPORTED_MODULE_3__.default, {})
+          })
+        })]
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Adminpage);
+
+if (document.getElementById('adminPage')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Adminpage, {}), document.getElementById('adminPage'));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/formLogin.js":
 /*!**********************************************!*\
   !*** ./resources/js/components/formLogin.js ***!
@@ -18221,19 +18750,18 @@ var FormLogin = /*#__PURE__*/function (_Component) {
         username: _this.state.username,
         password: _this.state.password
       };
-      axios__WEBPACK_IMPORTED_MODULE_2___default().post('./userLog', packets, {
-        headers: {
-          "Content-Type": "form-data"
-        }
-      }).then(function (response) {
-        //  response => alert(JSON.stringify(response.data))
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post('./userLog', packets // ,{headers: {
+      //     "Content-Type": "form-data"
+      //   }}
+      ).then(function (response) {
+        // response => alert(JSON.stringify(response.data))
         var _response$data = response.data,
             id = _response$data.id,
             allow = _response$data.allow,
             userUN = _response$data.userUN,
             userP = _response$data.userP,
             userT = _response$data.userT;
-        window.location.href = "./user";
+        window.location = "./user";
       }) // .then(
       //    response => alert(JSON.stringify(response.data))
       //     )
@@ -18267,7 +18795,7 @@ var FormLogin = /*#__PURE__*/function (_Component) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "row justify-content-center",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "col-md-6",
+            className: "col-md-3",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "card",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -18294,7 +18822,10 @@ var FormLogin = /*#__PURE__*/function (_Component) {
                             id: "Username",
                             name: "Username",
                             onChange: this.Username,
-                            type: "text"
+                            type: "text",
+                            style: {
+                              width: '100%'
+                            }
                           })
                         })
                       })]

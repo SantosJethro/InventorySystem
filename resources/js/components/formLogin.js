@@ -79,15 +79,16 @@ Password = (event) => {
   };
   
   axios.post('./userLog', packets
-  ,{headers: {
-      "Content-Type": "form-data"
-    }}
+  // ,{headers: {
+  //     "Content-Type": "form-data"
+  //   }}
     )
   .then(response => {
-    //  response => alert(JSON.stringify(response.data))
    
-    const { id, allow ,userUN,userP,userT  } = response.data;
-     window.location.href = "./user";
+      // response => alert(JSON.stringify(response.data))
+   
+      const { id, allow ,userUN,userP,userT  } = response.data;
+       window.location = "./user";
   })
             // .then(
             //    response => alert(JSON.stringify(response.data))
@@ -114,7 +115,7 @@ Password = (event) => {
     return (
       <div className='container py-4'>
         <div className='row justify-content-center'>
-          <div className='col-md-6'>
+          <div className='col-md-3'>
             <div className='card'>
               <div className='card-header'>User LogIn</div>
               <div className='card-body'>
@@ -126,7 +127,7 @@ Password = (event) => {
                   </Grid>
                   <div>
                     <Grid item>
-                      <TextField label="Enter Username" id="Username" name="Username" onChange={this.Username} type="text"/>
+                      <TextField label="Enter Username" id="Username" name="Username" onChange={this.Username} type="text" style ={{width: '100%'}} />
                     </Grid>
                   </div>
                 </Grid>

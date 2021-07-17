@@ -13,13 +13,11 @@ class userAuth extends Controller
 {
     function userLogin(Request $req){
         
+        
            $username= $req->username;
            $password= $req->password;
-          
-        //    $userDet= new
-           $Cusername=$username;
-           $Cpassword=$password;
-        //   return 'success' . $username . $password;
+          #return $username . $password;
+         
             $IsLogIn='YES';
             $FindUser= DB::select("select * from users where username='$username' and password='$password'");
             
@@ -41,7 +39,7 @@ class userAuth extends Controller
                  session()->put('Password',$password);
                  session()->put('IsLogIn',$IsLogIn);
                  session()->put('Id',$userID);
-                  return 'ÍD: ' .$userID.' Allow: '.$allow.' Username: '.$userUN.' Password: '.$userP.' Usertype: '.$userT;
+                //   return 'ÍD: ' .$userID.' Allow: '.$allow.' Username: '.$userUN.' Password: '.$userP.' Usertype: '.$userT;
                 
                 // $IsLogIn();
                 //  $IsLogIn->session(['IsLogIn' => 'YES']);
@@ -53,8 +51,8 @@ class userAuth extends Controller
                
                 if ($allow==1) {
                     if($userT==2){
-                        // return 'ÍD: ' .$userID.' Allow: '.$allow.' Username: '.$userUN.' Password: '.$userP.' Usertype: '.$userT;
-                        // return redirect('user');
+                       // return 'ÍD: ' .$userID.' Allow: '.$allow.' Username: '.$userUN.' Password: '.$userP.' Usertype: '.$userT;
+                        //   return redirect('user');
                         // // header('Location: localhost/InventorySystem1/public/admin');
                         // return 'ÍD: ' .$userID.' Allow: '.$allow.' Username: '.$userUN.' Password: '.$userP.' Usertype: '.$userT;
                         return response()->json([
