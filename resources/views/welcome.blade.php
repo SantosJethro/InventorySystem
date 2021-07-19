@@ -16,7 +16,14 @@
 </head>
 
 <body>
+    
+    <div id="RadjLogo">
+        <script src="{{ asset('js/app.js') }}"></script>
+    </div>
     <div id="app">
+        <script src="{{ asset('js/app.js') }}"></script>
+    </div>
+    <div id="displayU">
         <script src="{{ asset('js/app.js') }}"></script>
     </div>
 </body>

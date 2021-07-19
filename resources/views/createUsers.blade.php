@@ -25,27 +25,27 @@
                         @csrf
                         <div class="form-group">
                             <label for="Name">Name</label>
-                            <input type="text" class="form-control" name="Name">
+                            <input type="text" class="form-control" name="name">
                         </div>
                     <br>
                         <div class="form-group">
                             <label for="Username">Username</label>
-                            <input type="text" class="form-control" name="Username">
+                            <input type="text" class="form-control" name="username">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="Password">Password</label>
-                            <input type="text" class="form-control" name="Password">
+                            <input type="text" class="form-control" name="password">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="UserType">Usertype</label>
-                            <input type="text" class="form-control" name="UserType">
+                            <input type="text" class="form-control" name="usertype">
                         </div>
                         <br>
                         <div class="form-group">
                             <label for="Allow">Allow</label>
-                            <input type="text" class="form-control" name="Allow">
+                            <input type="text" class="form-control" name="allow">
                         </div>
                         <br>
                         <button type="submit" class="btn btn-success">Create</button>

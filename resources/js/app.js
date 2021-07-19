@@ -18,4 +18,5 @@ require('./components/DisplayUser');
 require('./components/formLogin');
 require('./components/adminPage');
 require('./components/CreateUserF');
+require('./components/trials');
 // require('./components/app1');

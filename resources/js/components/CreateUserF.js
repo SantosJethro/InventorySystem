@@ -4,9 +4,12 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import axios from 'axios';
 import { Component } from 'react';
 import { FormControl } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Select from '@material-ui/core/Select';
 
 
 
@@ -27,6 +30,12 @@ const useStyles = makeStyles((theme) => ({
   },
   title:{
         variant:'h1'
+  },formControl: {
+    margin: theme.spacing(1),
+    minWidth: 4000,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
   },
 
 }));
@@ -38,13 +47,23 @@ class CreateUserF extends Component {
     super(props)
     this.state = {
       Username : '',
-      Password : ''
+      Password : '',
+      Name : '',
+      Usertype : 2,
+      Allow : 2,
   }
  
+ 
+
   this.Username = this.Username;
   this.Password = this.Password;
-  this.Login = this.Login;
+  this.Name = this.Name;
+  this.Usertype = this.Usertype;
+  this.Allow = this.Allow;
+  this.CreateUser = this.CreateUser;
   }
+
+  
 
 Username = (event) => {
     this.setState({username : event.target.value})
@@ -52,59 +71,61 @@ Username = (event) => {
 Password = (event) => {
   this.setState({password : event.target.value})
 }
+Name = (event) => {
+  this.setState({name : event.target.value})
+}
+Usertype = (event) => {
+  this.setState({usertype : event.target.value})
+} 
+Allow = (event) => {
+this.setState({allow : event.target.value})
+}
 
   
-
-  LogInU = () => {
-    const packets = {
+  CreateUser = () => {
+    const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const data = {
       username:  this.state.username,
       password: this.state.password,
+      name:  this.state.name,
+      usertype:  this.state.usertype,
+      allow:  this.state.allow,
+    };
+    const request = {
+      method: "POST",
+      // redirect: 'follow',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-CSRF-TOKEN': token,
+      },
+      body: JSON.stringify(data),
+    }
+     fetch('./userCrud',request)
+    .then(response=> response.json())
+    .then((result)=> {
+      console.log(result);
+        window.location = './redirect';
+    }).catch(error => {
+      alert("ERRor::",error.response.data);
+       response => alert(JSON.stringify(response.data))
+     
+        
+        });
   };
-  
-  axios.post('./userLog', packets
-  // ,{headers: {
-  //     "Content-Type": "form-data"
-  //   }}
-    )
-  .then(response => {
-   
-      // response => alert(JSON.stringify(response.data))
-   
-      const { id, allow ,userUN,userP,userT  } = response.data;
-       window.location = "./user";
-  })
-            // .then(
-            //    response => alert(JSON.stringify(response.data))
-            //     )
-            .catch(error => {
-                console.log("ERROR:: ",error.response.data);
-                
-                });
 
-  // axios({
-  //   method: 'post',
-  //   url: 'http://localhost/InventorySystem1/public/userLog',
-  //   data: {
-  //     username: this.state.username,
-  //     password: this.state.password,
-  //   }
-  // })
-
-    
-  }
+ 
 
   
   render () {
     return (
-  
-      
       <div className='container py-4'>
         <div className='row justify-content-center'>
           <div className='col-md-6'>
             <div className='card'>
               <div className='card-header'>USER CREATION</div>
               <div className='card-body'>
-                <form onSubmit={this.CreateUser}>
+                
 <div className='col-md-10'>
                   <div className='form-group'>
                     <Grid container spacing={1} alignItems="flex-end">
@@ -127,7 +148,7 @@ Password = (event) => {
                     <div className={useStyles.margin}>
                       <Grid container spacing={1} alignItems="flex-end">
                         <Grid item>
-                          <TextField id="Name" label="Enter Full Name" onChange={this.name} type="text" fullWidth={true} />
+                          <TextField id="Name" label="Enter Full Name" onChange={this.Name} type="text" fullWidth={true} />
                         </Grid>
                       </Grid>
                     </div>
@@ -140,13 +161,15 @@ Password = (event) => {
                     <div className={useStyles.margin}>
                       <Grid container spacing={1} alignItems="flex-end">
                         <Grid item>
-                        <label>
-                              USERTYPE
-                              <select value={this.state.value} onChange={this.handleChange}>
-                                <option value={1}>Admin</option>
-                                <option value={2}>STOCKMAN</option>
-                              </select>
-                            </label>
+                       
+                             <InputLabel>Usertype</InputLabel>
+                              <Select
+                                onChange={this.Usertype} value={this.Usertype}
+                              >
+
+                                <MenuItem value={1}>Admin</MenuItem>
+                                <MenuItem value={2}>Stockman</MenuItem>
+                              </Select>
                         </Grid>
                       </Grid>
                     </div>
@@ -157,13 +180,15 @@ Password = (event) => {
                     <div className={useStyles.margin}>
                       <Grid container spacing={1} alignItems="flex-end">
                         <Grid item>
-                        <label>
-                              ALLOW LOGIN
-                              <select value={this.state.value} onChange={this.handleChange}>
-                                <option value={1}>YES</option>
-                                <option value={2}>NO</option>
-                              </select>
-                            </label>
+                       
+                        <InputLabel>Allow To Login?</InputLabel>
+                              <Select
+                                onChange={this.Allow}
+                              >
+
+                                <MenuItem value={1}>YES</MenuItem>
+                                <MenuItem value={2}>NO</MenuItem>
+                              </Select>
                         </Grid>
                       </Grid>
                     </div>
@@ -172,13 +197,13 @@ Password = (event) => {
                   <Grid container>
                   <Grid item xs={5}></Grid>
                   <Grid item xs={5}>
-                    <Button type="submit">
+                    <Button type="submit" onClick={this.CreateUser}>
                     Create User
                   </Button>
                   </Grid>
               </Grid>
               </div>
-                </form>
+                
               </div>
             </div>
           </div>

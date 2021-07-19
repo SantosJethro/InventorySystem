@@ -28,7 +28,9 @@ Route::get('/', function () {
 Route::get('/user', function () {
     return view('userLogin');
 });
-
+Route::get('/redirect', function () {
+    return view('redirection');
+});
 
 
 Route::get('/admin', function () {
@@ -89,27 +91,35 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+
+// Route::resource('/userCrud','./CRUDuser');
+// Route::post('userLog', 'App\Http\Controllers\userAuth@userLogin');
+Route::post('userCrud', 'App\Http\Controllers\CRUDuser@store');
+Route::get('userAll', 'App\Http\Controllers\CRUDuser@index');
+
 Route::get('/createUsers',function(){
     return view('createUsers');
 });
 Route::post('/createUsers',function(){
+    return ('sss');
     $users = new Users();
     $validator = Validator::make(request()->all(),[
-        'Name' => 'required' ,
-        'Username' => 'required',
-        'Password' => 'required',
-        'UserType' => 'required',
-        'Allow' => 'required'
+        'name' => 'required' ,
+        'username' => 'required',
+        'password' => 'required',
+        'usertype' => 'required',
+        'allow' => 'required'
                                 ]);
     if($validator->fails()){
+        return response()->json(['responseTExt' => $validator],422);
         return redirect()->back()->withErrors($validator);
     }
     users::Create([
-    'Name' => request('Name'),
-    'Username' => request('Username'),
-    'Password' => request('Password'),
-    'UserType' => request('UserType'),
-    'Allow' => request('Allow')
+    'Name' => request('name'),
+    'Username' => request('username'),
+    'Password' => request('password'),
+    'UserType' => request('usertype'),
+    'Allow' => request('allow')
     ]);
      $select = DB::select('select * from users');
      return view ('adminLogin')->with('name',$select);

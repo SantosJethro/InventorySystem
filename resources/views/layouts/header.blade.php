@@ -27,9 +27,13 @@
         
     </head>
     <body>
-       
-        <div class="container">
+        @if ((session('IsLogIn')) == 'YES')
+    
               @yield('content')
-        </div>
+        @elseif((session('IsLogIn')) == 'NO')
+<script>alert("ERROR LogIn and Try again")window.location="./LogIn"</script>;
+@else
+<script>alert("ERROR LogIn and Try again"); window.location="./LogIn"</script>;
+@endif
     </body>
 </html>

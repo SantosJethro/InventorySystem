@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ReactDOM from 'react-dom';
+import RadjLogo from './Logo';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,15 +30,14 @@ export default function ButtonAppBar() {
   
 
   return (
+  
     <div className={classes.root}>
+      <RadjLogo />
       <AppBar position="static">
   <Toolbar>
     
     <Typography variant="h6" className={classes.title}>
-    <Button color="inherit" href="./">Home</Button>
-    <Button color="inherit" href="./welcome">Welcome</Button>
-    <Button color="inherit" href="./admin">Admin</Button>
-    <Button color="inherit" href="./user">user</Button>
+    <Button color="inherit" href="./redirect">Home</Button>
     </Typography>
  
     <Button color="inherit" href="./LogIn">Login</Button>
