@@ -16,6 +16,7 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import editUser from './editUser';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -64,16 +65,20 @@ const buttonStyles = {
 }
 
 function DisplayUs() {
-  const styleBut = buttonStyles;
   const classes = useStyles();
   const [data, setData] = useState([]);
-  const [NewName, setNewName] = useState();
-  const [NewUsername, setNewUsername] = useState();
-  const [NewPassword, setNewPassword] = useState();
-  const [NewAllow, setNewAllow] = useState(); 
-  const [userId, setuserId] = useState();
 
+  const [open, setOpen] = React.useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  
   const AllUser = () => {
    fetch('./userAll')
    .then(response=> response.json())
@@ -81,45 +86,58 @@ function DisplayUs() {
       setData({
         data: result.datas
       });
-      console.log('asd',result.datas);
+    
     }).catch(error => {
       console.log(error)
     },
        )
-
-    const EditUser = () => {
-     
-      const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
-      const data = {
-        password:password,
-        email:email,
       };
-      const request = {
-        method: "POST",
-        // redirect: 'follow',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'X-CSRF-TOKEN': token,
-        },
-        body: JSON.stringify(data),
-      }
-       fetch('/auth/login/${userId}/editU',request)
-      .then(response=> response.json())
-      .then((result)=> {
-        console.log(result);
-          window.location = '/test';
-      });
+    const EditUser = ($id) => {
+      setOpen(true);
+     
+     console.log($id)
+     
     };
-    
-};
 
+    const DeleteUser = ($id) => {
+      const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      const id = $id;
+    const request = {
+      method: "POST",
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-TOKEN': token
+      },
+      body: JSON.stringify(id),
+    }
+    if(confirm("Delete this User?")){
+console.log($id)
+    fetch(`userCrud/delete/${id}`,request)
+    .then(response=> response.json())
+    .then((result)=> {
+      console.log(result)
+    }).catch(error => {
+      console.log(error)
+    },
+       )
+    }else{
+      alert('Delete User Failed')
+    }
+     };
+    
+
+     useEffect(()=>{
+      AllUser();
+     },[]);
     
     return (
       
       <div>
-        <button onClick={AllUser}>aaaa</button>
-        
+      
+      {/* <EditUser open onclose id={id}/> */}
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        asd
+      </Button>
     <TableContainer component={Paper}>
       <Table aria-label="customized table">
         <TableHead>
@@ -138,37 +156,26 @@ function DisplayUs() {
               return(
               <StyledTableRow key={list.Id}>
                 <StyledTableCell>
-                  <TextField id="Username" label="Input Name" variant="outlined" value={list.Name} readOnly/>
+                  {list.Name}
                 </StyledTableCell>
 
                 <StyledTableCell>
-                  <TextField id="Username" label="Input Username" variant="outlined" value={list.Username} readOnly/>
+                  {list.Username}
                 </StyledTableCell>
 
                 <StyledTableCell>
-                  <TextField id="Username" label="Input Password" variant="outlined" value= {list.Password} readOnly/>
-                </StyledTableCell>
-
-              
-
-                <StyledTableCell>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="Allow">Allow</InputLabel>
-                  <Select labelId="Allow" id="Allow" value={list.Allow} label="Allow">
-                    <MenuItem value="">
-                      <em></em>
-                    </MenuItem>
-                    <MenuItem value={1}>Admin</MenuItem>
-                    <MenuItem value={2}>User</MenuItem>
-                  </Select>
-                </FormControl>
+                 {list.Password}
                 </StyledTableCell>
 
                 <StyledTableCell>
-                  <button style={{ borderRadius: 20, backgroundColor: "#F8EA8C", padding: "10px 10px",fontSize: "15px"}}>
-                    Edit
+                  {list.Allow == 1 ? "YES" : "NO"}
+                </StyledTableCell>
+
+                <StyledTableCell>
+                  <button onClick={() => EditUser(list.Id)} style={{ borderRadius: 20, backgroundColor: "#F8EA8C", padding: "10px 10px",fontSize: "15px"}} >
+                    Edit 
                   </button > 
-                  <button style={{ borderRadius: 20, backgroundColor: "#FA270E", padding: "10px 10px",fontSize: "15px"}}>
+                  <button onClick={() => DeleteUser(list.Id)} style={{ borderRadius: 20, backgroundColor: "#FA270E", padding: "10px 10px",fontSize: "15px"}}>
                     Delete
                     </button>
                 </StyledTableCell>
@@ -180,12 +187,13 @@ function DisplayUs() {
         </TableBody>
       </Table>
     </TableContainer>
+    
         {
           data.length == 0 ? "" : data.data.map((list,key) => {
             return (
               <h1 key={list.Id}>
                 List <br/>
-                Name: {list.Name}<br/>
+                
                 Username {list.Username}<br/>
                 Password {list.Password}<br/>
                 UserType {list.UserType}<br/>

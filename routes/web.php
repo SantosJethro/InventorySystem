@@ -65,27 +65,6 @@ Route::get('/LogOut', function () {
 Route::post('userLog', 'App\Http\Controllers\userAuth@userLogin');
 Route::view("userLogin","userLogin");
 
-// Route::get('/loginProcess/{username}/{password}', function ($Username,$Password) {
-//     $validator = Validator::make(request()->all(),[
-//         'Username' => 'required',
-//         'Password' => 'required'
-//            ]);
-//     if($validator->fails()){
-//         return redirect()->back()->withErrors($validator);
-//     }
-//     $userName = request('Name');
-//     $Password = request('Password');
-//     $Check=DB::select( "select * from users 
-//     where username='$userName' 
-//     and password='$Password';" );
-//     if($Check){
-
-//      //$select = DB::select('select * from users');
-//      return view ('adminLogin')->with('name',$Check);
-//     }else {
-//         echo "Error";
-//     }
-// });
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -95,13 +74,22 @@ Route::get('/welcome', function () {
 // Route::resource('/userCrud','./CRUDuser');
 // Route::post('userLog', 'App\Http\Controllers\userAuth@userLogin');
 
+//CRUD USER
 //Creat User
 Route::post('userCrud', 'App\Http\Controllers\CRUDuser@store');
 //view User
 Route::get('userAll', 'App\Http\Controllers\CRUDuser@index');
+Route::POST('userSingle/{id}', 'App\Http\Controllers\CRUDuser@index');
 //Edit User
-Route::post('userCrud/{id}/update', 'App\Http\Controllers\CRUDuser@edit');
+Route::post('userCrud/update/{id}', 'App\Http\Controllers\CRUDuser@update');
+Route::get('editUsers/',function(){
+    return view ('');
+});
+//Delete User
+Route::post('userCrud/delete/{id}', 'App\Http\Controllers\CRUDuser@destroy');
 
+
+//blade Crud
 Route::get('/createUsers',function(){
     return view('createUsers');
 });

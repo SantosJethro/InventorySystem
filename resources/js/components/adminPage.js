@@ -56,7 +56,7 @@ function Adminpage() {
                 <button type="button" variant="contained" color="primary" onClick={handleOpen}>
         Create Users
       </button>
-      {/* <Modal
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
@@ -67,7 +67,7 @@ function Adminpage() {
                 </DialogContent>
                 
         
-      </Modal> */}
+      </Modal>
       <CreateuserF />
                 </Grid>
             </Grid>

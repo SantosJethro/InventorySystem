@@ -90,6 +90,13 @@ class CRUDuser extends Controller
     public function show($id)
     {
         //
+        $select = DB::select("select * from users where id=$id");
+        if($select){
+                return response()-> json(["datas" => $select],200);
+        }else{
+            return response()->JSON(['ERROR, TRY AGAIN'],422);
+        }
+
     }
 
     /**
@@ -101,7 +108,8 @@ class CRUDuser extends Controller
     public function edit($id)
     {
         //
-        
+
+
     }
 
     /**
@@ -114,6 +122,19 @@ class CRUDuser extends Controller
     public function update(Request $request, $id)
     {
         //
+        $username= $request->NewUsername;
+        $password= $request->NewPassword;
+        $name= $request->NewName;
+        $allow= $request->NewAllow;
+           return response()->json([$username,$password,$name,$allow,],200);
+        
+                $insertUser=DB::update("update users (Username,Password,Name,UserType,Allow) values (?,?,?,?,?)",[$username,$password,$name,$usertype,$allow]);
+            if($insertUser){
+                return response()->json(["Success"],200);
+            }else{
+                return response()->json(['responseTExt' => 'ERROR TRY AGAIN'],422);
+            }
+
     }
 
     /**
@@ -125,5 +146,11 @@ class CRUDuser extends Controller
     public function destroy($id)
     {
         //
+      $deleted = DB::delete("delete from users where id=$id");
+      if($deleted){
+        return response()->json(["Success"],200);
+      }
+      return response()->json(["ERROR"],422);
+       
     }
 }

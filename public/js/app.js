@@ -2213,6 +2213,99 @@ var Button = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/esm/DialogContent/DialogContent.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@material-ui/core/esm/DialogContent/DialogContent.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "styles": () => (/* binding */ styles),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _styles_withStyles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+
+
+
+
+
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      flex: '1 1 auto',
+      WebkitOverflowScrolling: 'touch',
+      // Add iOS momentum scrolling.
+      overflowY: 'auto',
+      padding: '8px 24px',
+      '&:first-child': {
+        // dialog without title
+        paddingTop: 20
+      }
+    },
+
+    /* Styles applied to the root element if `dividers={true}`. */
+    dividers: {
+      padding: '16px 24px',
+      borderTop: "1px solid ".concat(theme.palette.divider),
+      borderBottom: "1px solid ".concat(theme.palette.divider)
+    }
+  };
+};
+var DialogContent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function DialogContent(props, ref) {
+  var classes = props.classes,
+      className = props.className,
+      _props$dividers = props.dividers,
+      dividers = _props$dividers === void 0 ? false : _props$dividers,
+      other = (0,_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["classes", "className", "dividers"]);
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+    className: (0,clsx__WEBPACK_IMPORTED_MODULE_4__.default)(classes.root, className, dividers && classes.dividers),
+    ref: ref
+  }, other));
+});
+ true ? DialogContent.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * The content of the component.
+   */
+  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
+
+  /**
+   * @ignore
+   */
+  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
+
+  /**
+   * Display the top and bottom dividers.
+   */
+  dividers: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_styles_withStyles__WEBPACK_IMPORTED_MODULE_5__.default)(styles, {
+  name: 'MuiDialogContent'
+})(DialogContent));
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/esm/FilledInput/FilledInput.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/FilledInput/FilledInput.js ***!
@@ -19044,6 +19137,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar */ "./resources/js/components/navbar.js");
 /* harmony import */ var _CreateUserF__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CreateUserF */ "./resources/js/components/CreateUserF.js");
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var _material_ui_core_Modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Modal */ "./node_modules/@material-ui/core/esm/Modal/Modal.js");
+/* harmony import */ var _material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/DialogContent */ "./node_modules/@material-ui/core/esm/DialogContent/DialogContent.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -19132,6 +19227,14 @@ function Adminpage() {
           color: "primary",
           onClick: handleOpen,
           children: "Create Users"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_Modal__WEBPACK_IMPORTED_MODULE_7__.default, {
+          open: open,
+          onClose: handleClose,
+          "aria-labelledby": "simple-modal-title",
+          "aria-describedby": "simple-modal-description",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_DialogContent__WEBPACK_IMPORTED_MODULE_8__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_CreateUserF__WEBPACK_IMPORTED_MODULE_3__.default, {})
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_CreateUserF__WEBPACK_IMPORTED_MODULE_3__.default, {})]
       })]
     })]
@@ -19143,6 +19246,16 @@ function Adminpage() {
 if (document.getElementById('adminPage')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Adminpage, {}), document.getElementById('adminPage'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/editUser.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/editUser.js ***!
+  \*********************************************/
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: c:\\xampp\\htdocs\\InventorySystem1\\resources\\js\\components\\editUser.js: Unexpected token, expected \",\" (75:25)\n\n\u001b[0m \u001b[90m 73 |\u001b[39m         body\u001b[33m:\u001b[39m \u001b[33mJSON\u001b[39m\u001b[33m.\u001b[39mstringify(\u001b[33mUserData\u001b[39m)\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 74 |\u001b[39m       }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 75 |\u001b[39m        fetch(userSingle\u001b[33m/\u001b[39m${id}\u001b[33m,\u001b[39mrequest)\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 76 |\u001b[39m       \u001b[33m.\u001b[39mthen(response\u001b[33m=>\u001b[39m response\u001b[33m.\u001b[39mjson())\u001b[0m\n\u001b[0m \u001b[90m 77 |\u001b[39m       \u001b[33m.\u001b[39mthen((result)\u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 78 |\u001b[39m         console\u001b[33m.\u001b[39mlog(result)\u001b[33m;\u001b[39m\u001b[0m\n    at Object._raise (c:\\xampp\\htdocs\\InventorySystem1\\node_modules\\@babel\\parser\\lib\\index.js:816:17)\n    at Object.raiseWithData (c:\\xampp\\htdocs\\InventorySystem1\\node_modules\\@babel\\parser\\lib\\index.js:809:17)\n    at Object.raise (c:\\xampp\\htdocs\\InventorySystem1\\node_modules\\@babel\\parser\\lib\\index.js:770:17)\n    at Object.unexpected (c:\\xampp\\htdocs\\InventorySystem1\\node_modules\\@babel\\parser\\lib\\index.js:9893:16)\n    at Object.expect (c:\\xampp\\htdocs\\InventorySystem1\\node_modules\\@babel\\parser\\lib\\index.js:9867:28)\n    at Object.parseCallExpressionArguments (c:\\xampp\\htdocs\\InventorySystem1\\node_modules\\@babel\\parser\\lib\\index.js:11069:14)\n    at Object.parseCoverCallAndAsyncArrowHead (c:\\xampp\\htdocs\\InventorySystem1\\node_modules\\@babel\\parser\\lib\\index.js:10992:29)\n    at Object.parseSubscript (c:\\xampp\\htdocs\\InventorySystem1\\node_modules\\@babel\\parser\\lib\\index.js:10925:19)\n    at Object.parseSubscripts (c:\\xampp\\htdocs\\InventorySystem1\\node_modules\\@babel\\parser\\lib\\index.js:10898:19)\n    at Object.parseExprSubscripts (c:\\xampp\\htdocs\\InventorySystem1\\node_modules\\@babel\\parser\\lib\\index.js:10887:17)");
 
 /***/ }),
 
@@ -19475,21 +19588,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
-/* harmony import */ var _material_ui_core_Table__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/Table */ "./node_modules/@material-ui/core/esm/Table/Table.js");
-/* harmony import */ var _material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/TableBody */ "./node_modules/@material-ui/core/esm/TableBody/TableBody.js");
-/* harmony import */ var _material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/TableCell */ "./node_modules/@material-ui/core/esm/TableCell/TableCell.js");
-/* harmony import */ var _material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/TableContainer */ "./node_modules/@material-ui/core/esm/TableContainer/TableContainer.js");
-/* harmony import */ var _material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/TableHead */ "./node_modules/@material-ui/core/esm/TableHead/TableHead.js");
-/* harmony import */ var _material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/TableRow */ "./node_modules/@material-ui/core/esm/TableRow/TableRow.js");
-/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
-/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/TextField.js");
-/* harmony import */ var _material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material-ui/core/InputLabel */ "./node_modules/@material-ui/core/esm/InputLabel/InputLabel.js");
-/* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/core/Select */ "./node_modules/@material-ui/core/esm/Select/Select.js");
-/* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/FormControl.js");
-/* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/MenuItem.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _material_ui_core_Table__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Table */ "./node_modules/@material-ui/core/esm/Table/Table.js");
+/* harmony import */ var _material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core/TableBody */ "./node_modules/@material-ui/core/esm/TableBody/TableBody.js");
+/* harmony import */ var _material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/TableCell */ "./node_modules/@material-ui/core/esm/TableCell/TableCell.js");
+/* harmony import */ var _material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/TableContainer */ "./node_modules/@material-ui/core/esm/TableContainer/TableContainer.js");
+/* harmony import */ var _material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core/TableHead */ "./node_modules/@material-ui/core/esm/TableHead/TableHead.js");
+/* harmony import */ var _material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/TableRow */ "./node_modules/@material-ui/core/esm/TableRow/TableRow.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/Button.js");
+/* harmony import */ var _editUser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editUser */ "./resources/js/components/editUser.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -19521,7 +19631,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default)(function (theme) {
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
   return {
     formControl: {
       margin: theme.spacing(1),
@@ -19532,7 +19643,7 @@ var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_3__.default
     }
   };
 });
-var StyledTableCell = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
+var StyledTableCell = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default)(function (theme) {
   return {
     head: {
       backgroundColor: theme.palette.common.black,
@@ -19542,8 +19653,8 @@ var StyledTableCell = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.d
       fontSize: 14
     }
   };
-})(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_5__.default);
-var StyledTableRow = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.default)(function (theme) {
+})(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_6__.default);
+var StyledTableRow = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default)(function (theme) {
   return {
     root: {
       '&:nth-of-type(odd)': {
@@ -19554,7 +19665,7 @@ var StyledTableRow = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__.de
       }
     }
   };
-})(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_6__.default);
+})(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_7__.default);
 var buttonStyles = {
   warning: {
     backgroundColor: "#F8EA8C",
@@ -19569,7 +19680,6 @@ var buttonStyles = {
 };
 
 function DisplayUs() {
-  var styleBut = buttonStyles;
   var classes = useStyles();
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
@@ -19577,30 +19687,18 @@ function DisplayUs() {
       data = _useState2[0],
       setData = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState4 = _slicedToArray(_useState3, 2),
-      NewName = _useState4[0],
-      setNewName = _useState4[1];
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_1__.useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      open = _React$useState2[0],
+      setOpen = _React$useState2[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState6 = _slicedToArray(_useState5, 2),
-      NewUsername = _useState6[0],
-      setNewUsername = _useState6[1];
+  var handleClickOpen = function handleClickOpen() {
+    setOpen(true);
+  };
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState8 = _slicedToArray(_useState7, 2),
-      NewPassword = _useState8[0],
-      setNewPassword = _useState8[1];
-
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState10 = _slicedToArray(_useState9, 2),
-      NewAllow = _useState10[0],
-      setNewAllow = _useState10[1];
-
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState12 = _slicedToArray(_useState11, 2),
-      userId = _useState12[0],
-      setuserId = _useState12[1];
+  var handleClose = function handleClose() {
+    setOpen(false);
+  };
 
   var AllUser = function AllUser() {
     fetch('./userAll').then(function (response) {
@@ -19609,111 +19707,85 @@ function DisplayUs() {
       setData({
         data: result.datas
       });
-      console.log('asd', result.datas);
     })["catch"](function (error) {
       console.log(error);
     });
+  };
 
-    var EditUser = function EditUser() {
-      var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
-      var data = {
-        password: password,
-        email: email
-      };
-      var request = {
-        method: "POST",
-        // redirect: 'follow',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'X-CSRF-TOKEN': token
-        },
-        body: JSON.stringify(data)
-      };
-      fetch('/auth/login/${userId}/editU', request).then(function (response) {
+  var EditUser = function EditUser($id) {
+    setOpen(true);
+    console.log($id);
+  };
+
+  var DeleteUser = function DeleteUser($id) {
+    var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    var id = $id;
+    var request = {
+      method: "POST",
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-TOKEN': token
+      },
+      body: JSON.stringify(id)
+    };
+
+    if (confirm("Delete this User?")) {
+      console.log($id);
+      fetch("userCrud/delete/".concat(id), request).then(function (response) {
         return response.json();
       }).then(function (result) {
         console.log(result);
-        window.location = '/test';
+      })["catch"](function (error) {
+        console.log(error);
       });
-    };
+    } else {
+      alert('Delete User Failed');
+    }
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-      onClick: AllUser,
-      children: "aaaa"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_7__.default, {
-      component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_8__.default,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_9__.default, {
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    AllUser();
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8__.default, {
+      variant: "outlined",
+      color: "primary",
+      onClick: handleClickOpen,
+      children: "asd"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__.default, {
+      component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_10__.default,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_11__.default, {
         "aria-label": "customized table",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_10__.default, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_6__.default, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledTableCell, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_12__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_7__.default, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledTableCell, {
               children: "Name"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledTableCell, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledTableCell, {
               children: "Username"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledTableCell, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledTableCell, {
               children: "Password"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledTableCell, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledTableCell, {
               children: "Allow"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledTableCell, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledTableCell, {
               children: "Action"
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_11__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_13__.default, {
           children: data.length == 0 ? "" : data.data.map(function (list) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(StyledTableRow, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledTableCell, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_12__.default, {
-                  id: "Username",
-                  label: "Input Name",
-                  variant: "outlined",
-                  value: list.Name,
-                  readOnly: true
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledTableCell, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_12__.default, {
-                  id: "Username",
-                  label: "Input Username",
-                  variant: "outlined",
-                  value: list.Username,
-                  readOnly: true
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledTableCell, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_12__.default, {
-                  id: "Username",
-                  label: "Input Password",
-                  variant: "outlined",
-                  value: list.Password,
-                  readOnly: true
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(StyledTableCell, {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_13__.default, {
-                  variant: "outlined",
-                  className: classes.formControl,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_14__.default, {
-                    id: "Allow",
-                    children: "Allow"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_15__.default, {
-                    labelId: "Allow",
-                    id: "Allow",
-                    value: list.Allow,
-                    label: "Allow",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_16__.default, {
-                      value: "",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("em", {})
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_16__.default, {
-                      value: 1,
-                      children: "Admin"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_16__.default, {
-                      value: 2,
-                      children: "User"
-                    })]
-                  })]
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(StyledTableCell, {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(StyledTableRow, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledTableCell, {
+                children: list.Name
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledTableCell, {
+                children: list.Username
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledTableCell, {
+                children: list.Password
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(StyledTableCell, {
+                children: list.Allow == 1 ? "YES" : "NO"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(StyledTableCell, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                  onClick: function onClick() {
+                    return EditUser(list.Id);
+                  },
                   style: {
                     borderRadius: 20,
                     backgroundColor: "#F8EA8C",
@@ -19721,7 +19793,10 @@ function DisplayUs() {
                     fontSize: "15px"
                   },
                   children: "Edit"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                  onClick: function onClick() {
+                    return DeleteUser(list.Id);
+                  },
                   style: {
                     borderRadius: 20,
                     backgroundColor: "#FA270E",
@@ -19736,8 +19811,8 @@ function DisplayUs() {
         })]
       })
     }), data.length == 0 ? "" : data.data.map(function (list, key) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h1", {
-        children: ["List ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Name: ", list.Name, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Username ", list.Username, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Password ", list.Password, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "UserType ", list.UserType, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), "Allow ", list.Allow, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h1", {
+        children: ["List ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), "Username ", list.Username, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), "Password ", list.Password, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), "UserType ", list.UserType, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), "Allow ", list.Allow, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {})]
       }, list.Id);
     })]
   });
@@ -19746,7 +19821,7 @@ function DisplayUs() {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DisplayUs);
 
 if (document.getElementById('displayU')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(DisplayUs, {}), document.getElementById('displayU'));
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(DisplayUs, {}), document.getElementById('displayU'));
 }
 
 /***/ }),
