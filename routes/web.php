@@ -94,8 +94,13 @@ Route::get('/welcome', function () {
 
 // Route::resource('/userCrud','./CRUDuser');
 // Route::post('userLog', 'App\Http\Controllers\userAuth@userLogin');
+
+//Creat User
 Route::post('userCrud', 'App\Http\Controllers\CRUDuser@store');
+//view User
 Route::get('userAll', 'App\Http\Controllers\CRUDuser@index');
+//Edit User
+Route::post('userCrud/{id}/update', 'App\Http\Controllers\CRUDuser@edit');
 
 Route::get('/createUsers',function(){
     return view('createUsers');

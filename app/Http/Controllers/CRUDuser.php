@@ -20,7 +20,7 @@ class CRUDuser extends Controller
         //
         $select = DB::select('select * from users');
         if($select){
-                return response()-> json(["data" => $select]);
+                return response()-> json(["datas" => $select],200);
         }else{
             return response()->JSON(['ERROR, TRY AGAIN'],422);
         }
@@ -101,6 +101,7 @@ class CRUDuser extends Controller
     public function edit($id)
     {
         //
+        
     }
 
     /**
