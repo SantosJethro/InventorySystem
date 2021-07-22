@@ -16,7 +16,11 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import editUser from './editUser';
+import EditUser1 from './editUser';
+import DialogContent from '@material-ui/core/DialogContent';
+import Modal from '@material-ui/core/Modal';
+import { Replay10Rounded, SettingsInputComponent, SettingsPowerRounded } from '@material-ui/icons';
+import { list } from 'postcss';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -67,17 +71,17 @@ const buttonStyles = {
 function DisplayUs() {
   const classes = useStyles();
   const [data, setData] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [keyId, setkeyId] = useState();
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleOpen = () => {
+    setIsOpen(!isOpen);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setIsOpen(isOpen);
   };
-
   
   const AllUser = () => {
    fetch('./userAll')
@@ -93,9 +97,11 @@ function DisplayUs() {
        )
       };
     const EditUser = ($id) => {
-      setOpen(true);
-     
-     console.log($id)
+      
+     handleOpen();
+     setkeyId($id);
+   
+    //  console.log($id)
      
     };
 
@@ -135,9 +141,7 @@ console.log($id)
       <div>
       
       {/* <EditUser open onclose id={id}/> */}
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        asd
-      </Button>
+     
     <TableContainer component={Paper}>
       <Table aria-label="customized table">
         <TableHead>
@@ -174,6 +178,7 @@ console.log($id)
                 <StyledTableCell>
                   <button onClick={() => EditUser(list.Id)} style={{ borderRadius: 20, backgroundColor: "#F8EA8C", padding: "10px 10px",fontSize: "15px"}} >
                     Edit 
+                   
                   </button > 
                   <button onClick={() => DeleteUser(list.Id)} style={{ borderRadius: 20, backgroundColor: "#FA270E", padding: "10px 10px",fontSize: "15px"}}>
                     Delete
@@ -187,8 +192,11 @@ console.log($id)
         </TableBody>
       </Table>
     </TableContainer>
-    
-        {
+    <EditUser1 keysId={keyId} isDialogOpened={isOpen} handleCloseDialog={() => setIsOpen(false)}/>
+            
+          
+      
+        {/* {
           data.length == 0 ? "" : data.data.map((list,key) => {
             return (
               <h1 key={list.Id}>
@@ -201,7 +209,7 @@ console.log($id)
               </h1>
             )
           })
-        }
+        } */}
        
      </div>
         

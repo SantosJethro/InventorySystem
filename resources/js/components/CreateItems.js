@@ -1,12 +1,15 @@
 import ReactDOM from 'react-dom';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { withStyles,makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import axios from 'axios';
-import { Component } from 'react';
-import { FormControl } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 
@@ -33,180 +36,147 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-class CreateItem extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      Username : '',
-      Password : '',
-      Name : '',
-      UserType : '',
-      Allow : '',
-  }
- 
-  this.Username = this.Username;
-  this.Password = this.Password;
-  this.Name = this.Name;
-  this.UserType = this.UserType;
-  this.Allow = this.Allow;
-  this.Login = this.Login;
-  }
+function CreateItemF() {
+  const [ItemName, setItemName] = useState();
+  const [ItemDesc, setItemDesc] = useState();
+  const [ItemQuantity, setItemQuantity] = useState();
+  // const {isDialogOpened, handleCloseDialog} = props;
+  const [open, setOpen] = React.useState(false);
 
-Username = (event) => {
-    this.setState({username : event.target.value})
-}
-Password = (event) => {
-  this.setState({password : event.target.value})
-}
-Name = (event) => {
-  this.setState({name : event.target.value})
-}
-UserType = (event) => {
-  this.setState({usertype : event.target.value})
-} 
-Allow = (event) => {
-this.setState({Allow : event.target.value})
-}
+  useEffect(() => {
+    handleClickOpen();
+  }, []);
 
-  CreateItem = () => {
-    const packets = {
-      username:  this.state.username,
-      password: this.state.password,
-      name:  this.state.name,
-      type:  this.state.usertype,
-      allow:  this.state.allow,
-  };
-  
-  axios.post('./CreateItem', packets
-  // ,{headers: {
-  //     "Content-Type": "form-data"
-  //   }}
-    )
-  .then(response => {
-   
-      // response => alert(JSON.stringify(response.data))
-   
-      const { username, password ,name,usertype,allow  } = response.data;
-       window.location = "./admin";
-  })
-            // .then(
-            //    response => alert(JSON.stringify(response.data))
-            //     )
-            .catch(error => {
-                console.log("ERROR:: ",error.response.data);
-                
-                });
-
-  // axios({
-  //   method: 'post',
-  //   url: 'http://localhost/InventorySystem1/public/userLog',
-  //   data: {
-  //     username: this.state.username,
-  //     password: this.state.password,
-  //   }
-  // })
-
+  const handleClickOpen = () => {
     
+    //setOpen(true);
+    //setTimeout(() => setOpen(false), 16000);
+  };
+
+  const handleClose = () => {
+    //setOpen(false);
+    handleCloseDialog(true);
+  };
+
+
+  const CreateItem = () => {
+    const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const itemData = {
+      ItemName:ItemName,
+      ItemDesc:ItemDesc,
+      ItemQuantity:ItemQuantity,
+    };
+    
+    const request = {
+      method: "POST",
+     
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-CSRF-TOKEN': token,
+      },
+      body: JSON.stringify(itemData),
+    }
+     fetch('./itemCrud',request)
+    .then(response=> response.json())
+    .then((result)=> {
+      console.log(result);
+        
+    }).catch(error => {
+      alert("ERRor::",error.response.data);
+       response => alert(JSON.stringify(response.data))
+     
+        
+        });
+  };
+
+  const cancel = () => {
+    handleClose()
+    console.log("ABORTED CREATE ITEMS")
   }
-
   
-  render () {
+  
     return (
-  
-      
-      <div className='container py-4'>
-        <div className='row justify-content-center'>
-          <div className='col-md-6'>
-            <div className='card'>
-              <div className='card-header'>USER CREATION</div>
-              <div className='card-body'>
-                <form onSubmit={this.CreateItem}>
-<div className='col-md-10'>
-                  <div className='form-group'>
-                    <Grid container spacing={1} alignItems="flex-end">
-                      <div>
-                        <Grid item>
-                          <TextField label="Enter Username" id="Username" name="Username" onChange={this.Username} type="text"/>
-                        </Grid>
-                      </div>
-                    </Grid>
-                  </div>
-
-                  <div className='form-group'>
-                    <Grid container spacing={1} alignItems="flex-end">
-                      <TextField label="Enter Password" id="Password" name="Password" onChange={this.Password} type="password"/>
-                  </Grid>
-                  </div>
-                
-                  <div className='form-group'>
-                    
-                    <div className={useStyles.margin}>
-                      <Grid container spacing={1} alignItems="flex-end">
-                        <Grid item>
-                          <TextField id="Name" label="Enter Full Name" onChange={this.Name} type="text" fullWidth={true} />
-                        </Grid>
-                      </Grid>
-                    </div>
-                  </div>
+      <div>
+              <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                  Open form dialog
+              </Button>
+              <Grid container spacing={3}>
+                <Grid item xs={3}></Grid>
+                  <Grid item xs={6}>
                   
+                          <div className='form-group'>
+                            <Grid container spacing={1} alignItems="flex-end">
+                              <div>
+                                <Grid item>
+                                <TextField label="Enter Item Name" id="ItemName" name="ItemName" onChange={(event)=>setItemName(event.target.value)} type="text" fullWidth/>
+                                </Grid>
+                              </div>
+                            </Grid>
+                          </div>
 
-                  
-                  <div className='form-group'>
-                    
-                    <div className={useStyles.margin}>
-                      <Grid container spacing={1} alignItems="flex-end">
-                        <Grid item>
-                        <label>
-                              USERTYPE
-                              <select value={2} onChange={this.UserType}>
-                                <option value={1}>Admin</option>
-                                <option value={2}>STOCKMAN</option>
-                              </select>
-                            </label>
-                        </Grid>
-                      </Grid>
-                    </div>
-                  </div>
+                          <div className='form-group'>
+                            <Grid container spacing={1} alignItems="flex-end">
+                              <TextField label="Enter ItemDesc" id="ItemDesc" name="ItemDesc" onChange={(event)=>setItemDesc(event.target.value)} type="text"/>
+                          </Grid>
+                          </div>
+                        
+                        
+                              <Grid container spacing={1} alignItems="flex-end">
+                                <Grid item>
+                                  <TextField id="ItemQuantity" label="Enter Item Quantity" onChange={(event)=>setItemQuantity(event.target.value)} type="text" fullWidth={true} />
+                                </Grid>
+                              </Grid>
+                          
 
-                  <div className='form-group'>
-                    
-                    <div className={useStyles.margin}>
-                      <Grid container spacing={1} alignItems="flex-end">
-                        <Grid item>
-                        <label>
-                              ALLOW LOGIN
-                              <select value={2} onChange={this.Allow}>
-                                <option value={1}>YES</option>
-                                <option value={2}>NO</option>
-                              </select>
-                            </label>
-                        </Grid>
-                      </Grid>
-                    </div>
-                  </div>
-                 
-                  <Grid container>
-                  <Grid item xs={5}></Grid>
-                  <Grid item xs={5}>
-                    <Button type="submit">
-                    Create User
-                  </Button>
+          
+                        
+                          
+                              <Grid item xs={5}>
+                                  <Button onClick={CreateItem}>
+                                Create Item
+                                </Button>
+                              </Grid>
+                        
                   </Grid>
+                 <Grid item xs={3}></Grid> 
               </Grid>
-              </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+              
+            
+              {/* <Dialog style={{height:'800px'}} open={isDialogOpened} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
+                <DialogTitle id="form-dialog-title">Create User</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                    
+                    </DialogContentText>
+                  
+                    <TextField label="Enter Item Name" id="ItemName" name="ItemName" onChange={(event)=>setItemName(event.target.value)} type="text" fullWidth/>
+                    <br/>
+                    <br/>
+                    <TextField label="Enter ItemDesc" id="ItemDesc" name="ItemDesc" onChange={(event)=>setItemDesc(event.target.value)} type="password"/>
+                    <br/>
+                    <br/>
+                    <TextField id="Password" label="Input Password" InputLabelProps={{shrink:true}} variant="outlined" value={NewPassword} onChange={(event)=>setNewPassword(event.target.value)} fullWidth/>
+
+                </DialogContent>
+                <DialogActions>
+                <Button onClick={CreateItem} color="primary">
+                    CreateItem
+                </Button>
+                <Button onClick={cancel} color="primary">
+                    Cancel
+                </Button>
+                
+                </DialogActions>
+            </Dialog> */}
+
+       </div>       
     )
   }
-}
 
 
-export default CreateItem;
+
+export default CreateItemF;
 if (document.getElementById('CreateItem')) {
-    ReactDOM.render(<CreateItem />, document.getElementById('CreateItem'));
+    ReactDOM.render(<CreateItemF />, document.getElementById('CreateItem'));
  }

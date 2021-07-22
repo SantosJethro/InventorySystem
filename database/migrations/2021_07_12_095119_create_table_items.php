@@ -18,6 +18,7 @@ class CreateTableItems extends Migration
                 $table->string('ItemName');
                 $table->string('ItemDesc');
                 $table->integer('itemQuantity');
+                $table->integer('userId');
                 $table->String('modifiedBy');
                 $table->timestamps();
          });

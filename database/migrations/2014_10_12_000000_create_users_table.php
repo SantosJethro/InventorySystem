@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('UserType');
             $table->integer('Tries');
             $table->boolean('Allow');
+            $table->integer('userId');
             $table->timestamps();
         });
     }

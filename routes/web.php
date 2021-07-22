@@ -75,18 +75,69 @@ Route::get('/welcome', function () {
 // Route::post('userLog', 'App\Http\Controllers\userAuth@userLogin');
 
 //CRUD USER
-//Creat User
+//Create User
 Route::post('userCrud', 'App\Http\Controllers\CRUDuser@store');
 //view User
 Route::get('userAll', 'App\Http\Controllers\CRUDuser@index');
-Route::POST('userSingle/{id}', 'App\Http\Controllers\CRUDuser@index');
+Route::post('userSingle/{id}', 'App\Http\Controllers\CRUDuser@show');
 //Edit User
 Route::post('userCrud/update/{id}', 'App\Http\Controllers\CRUDuser@update');
-Route::get('editUsers/',function(){
-    return view ('');
-});
+
 //Delete User
 Route::post('userCrud/delete/{id}', 'App\Http\Controllers\CRUDuser@destroy');
+
+
+//CRUD Item
+//Create Item
+Route::post('itemCrud', 'App\Http\Controllers\CRUDitem@store');
+//view Item
+Route::get('itemAll', 'App\Http\Controllers\CRUDitem@index');
+Route::post('itemSingle/{id}', 'App\Http\Controllers\CRUDitem@show');
+//Edit Item
+Route::post('itemCrud/update/{id}', 'App\Http\Controllers\CRUDitem@update');
+//Delete Item
+Route::post('itemCrud/delete/{id}', 'App\Http\Controllers\CRUDitem@destroy');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //blade Crud

@@ -23,9 +23,13 @@
     {{-- <div id="displayU">
         <script src="{{ asset('js/app.js') }}"></script>
     </div> --}}
-    <div id="EditUser">
+    {{-- <div id="CreateItem">
+        <script src="{{ asset('js/app.js') }}"></script>
+    </div> --}}
+    <div id="DisplayItem">
         <script src="{{ asset('js/app.js') }}"></script>
     </div>
+    
 </body>
 
 </html>

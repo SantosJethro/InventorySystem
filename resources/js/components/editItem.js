@@ -37,14 +37,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function EditUser(props) {
+function EditItem(props) {
   const {keysId,id, isDialogOpened, handleCloseDialog} = props;
   
   const [open, setOpen] = React.useState(false);
-  const [NewName, setNewName] = useState();
-  const [NewUsername, setNewUsername] = useState();
-  const [NewPassword, setNewPassword] = useState();
-  const [NewAllow, setNewAllow] = useState(); 
+  const [NewItemName, setNewItemName] = useState();
+  const [NewItemDesc, setNewItemDesc] = useState();
+  const [NewItemQuantity, setNewItemQuantity] = useState();
   
   useEffect(() => {
     handleClickOpen();
@@ -76,24 +75,22 @@ function EditUser(props) {
         body: JSON.stringify(keysId),
       }
       console.log('hahaha',keysId)
-       fetch(`userSingle/${keysId}`,request)
+       fetch(`itemSingle/${keysId}`,request)
       .then(response=> response.json())
       .then((result)=> {
       
      
-        console.log('dddd',result.data1User[0].Allow)
-        setNewName(
-          result.data1User[0].Name
+        console.log('dddd',result.data1Item[0].Allow)
+        setNewItemName(
+          result.data1Item[0].Name
         )
-        setNewPassword(
-           result.data1User[0].Password
+        setNewItemQuantity(
+           result.data1Item[0].Password
         )
-        setNewUsername(
-           result.data1User[0].Username
+        setNewItemDesc(
+           result.data1Item[0].Username
         )
-        setNewAllow(
-          result.data1User[0].Allow
-        )
+        
         
       });
    
@@ -107,10 +104,10 @@ function EditUser(props) {
      
       const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
       const UserData = {
-        NewName:NewName,
-        NewUsername:NewUsername,
-        NewPassword:NewPassword,
-        NewAllow:NewAllow,
+        NewItemName:NewItemName,
+        NewItemDesc:NewItemDesc,
+        NewItemQuantity:NewItemQuantity,
+     
       };
       
       const request = {
@@ -124,7 +121,7 @@ function EditUser(props) {
         body: JSON.stringify(UserData),
       }
       console.log('EDIT');
-      fetch(`./userCrud/update/${keysId}`,request)
+      fetch(`./itemCrud/update/${keysId}`,request)
       .then(response=> response.json())
       .then((result)=> {
         
@@ -137,7 +134,7 @@ function EditUser(props) {
 
     const cancel = () => {
       handleClose()
-      console.log("ABORTED EDIT USERS")
+      console.log("ABORTED UPDATE ITEMS")
       // window.location = './redirect'
      
     }
@@ -168,32 +165,20 @@ function EditUser(props) {
                 <button style={{ borderRadius: 20, backgroundColor: "#00FF00", padding: "10px 10px",fontSize: "15px"}} onClick={read1}>Click To Get Details</button>
                 </DialogContentText>
                
-                  <TextField id="Name" label="Input Name" InputLabelProps={{shrink:true}} variant="outlined" value={NewName} onChange={(event)=>setNewName(event.target.value)} fullWidth/>
+                  <TextField id="Item Name" label="Input Item Name" InputLabelProps={{shrink:true}} variant="outlined" value={NewItemName} onChange={(event)=>setNewItemName(event.target.value)} fullWidth/>
                 
                 <br/>
                 <br/>
                 
-                  <TextField id="Username" label="Input Username" InputLabelProps={{shrink:true}} variant="outlined" value={NewUsername}  onChange={(event)=>setNewUsername(event.target.value)} fullWidth/>
+                  <TextField id="Item Desc" label="Input Username" InputLabelProps={{shrink:true}} variant="outlined" value={NewItemDesc}  onChange={(event)=>setNewItemDesc(event.target.value)} fullWidth/>
                 
                   <br/>
                   <br/>
               
-                  <TextField id="Password" label="Input Password" InputLabelProps={{shrink:true}} variant="outlined" value={NewPassword} onChange={(event)=>setNewPassword(event.target.value)} fullWidth/>
+                  <TextField id="Item Quantity" label="Item Quantity" InputLabelProps={{shrink:true}} variant="outlined" value={NewItemQuantity} onChange={(event)=>setNewItemQuantity(event.target.value)} fullWidth/>
               
                   <br/>
                   <br/>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <InputLabel id="Allow">Allow</InputLabel>
-                  <Select labelId="Allow" id="Allow" label="Allow" value={NewAllow} onChange={(event)=>setNewAllow(event.target.value)}>
-                    <MenuItem value={NewAllow}>
-                      <em></em>
-                    </MenuItem>
-                    <MenuItem value={1}>YES</MenuItem>
-                    <MenuItem value={2}>No</MenuItem>
-                  </Select>
-                </FormControl>
-                
-  
 
                 </DialogContent>
                 <DialogActions>
@@ -220,9 +205,9 @@ function EditUser(props) {
     
 
 
-export default EditUser;
-if (document.getElementById('EditUser')) {
-  ReactDOM.render(<EditUser />, document.getElementById('EditUser'));
+export default EditItem;
+if (document.getElementById('EditItem')) {
+  ReactDOM.render(<EditItem />, document.getElementById('EditItem'));
 }
 
 
@@ -231,7 +216,7 @@ if (document.getElementById('EditUser')) {
 //       return (
 //         <h1 key={list.Id}>
 //           List <br/>
-//           <TextField id="Username" label="Input Name" variant="outlined" onChange={(event)=>setNewName(event.target.value)} value={NewName} /><br/>
+//           <TextField id="Username" label="Input Name" variant="outlined" onChange={(event)=>setNewItemName(event.target.value)} value={NewItemName} /><br/>
 //           Username {list.Username}<br/>
 //           Password {list.Password}<br/>
 //           UserType {list.UserType}<br/>

@@ -12,11 +12,16 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/navbar');
-require('./components/Example');
-require('./components/DisplayUser');
-require('./components/formLogin');
 require('./components/adminPage');
+require('./components/CreateItems')
 require('./components/CreateUserF');
+require('./components/DisplayItem');
+require('./components/DisplayUser');
+require('./components/editUser');
+require('./components/Example');
+require('./components/formLogin');
+require('./components/Logo');
+require('./components/navbar');
 require('./components/trials');
+
 // require('./components/app1');

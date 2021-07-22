@@ -68,7 +68,7 @@ const buttonStyles = {
   },
 }
 
-function DisplayUs() {
+function DisplayItem() {
   const classes = useStyles();
   const [data, setData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -83,8 +83,8 @@ function DisplayUs() {
     setIsOpen(isOpen);
   };
   
-  const AllUser = () => {
-   fetch('./userAll')
+  const AllItem = () => {
+   fetch('./itemAll')
    .then(response=> response.json())
     .then((result)=> {
       setData({
@@ -118,7 +118,7 @@ function DisplayUs() {
     }
     if(confirm("Delete this User?")){
 console.log($id)
-    fetch(`userCrud/delete/${id}`,request)
+    fetch(`itemCrud/delete/${id}`,request)
     .then(response=> response.json())
     .then((result)=> {
       console.log(result)
@@ -133,7 +133,7 @@ console.log($id)
     
 
      useEffect(()=>{
-      AllUser();
+      AllItem();
      },[]);
     
     return (
@@ -146,10 +146,9 @@ console.log($id)
       <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell>Username</StyledTableCell>
-            <StyledTableCell>Password</StyledTableCell>
-            <StyledTableCell>Allow</StyledTableCell>
+            <StyledTableCell>Item Name</StyledTableCell>
+            <StyledTableCell>Item Desc</StyledTableCell>
+            <StyledTableCell>Item Quantity</StyledTableCell>
             <StyledTableCell>Action</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -160,20 +159,17 @@ console.log($id)
               return(
               <StyledTableRow key={list.Id}>
                 <StyledTableCell>
-                  {list.Name}
+                  {list.ItemName}
                 </StyledTableCell>
 
                 <StyledTableCell>
-                  {list.Username}
+                  {list.ItemDesc}
                 </StyledTableCell>
 
                 <StyledTableCell>
-                 {list.Password}
+                 {list.ItemQuantity}
                 </StyledTableCell>
 
-                <StyledTableCell>
-                  {list.Allow == 1 ? "YES" : "NO"}
-                </StyledTableCell>
 
                 <StyledTableCell>
                   <button onClick={() => EditUser(list.Id)} style={{ borderRadius: 20, backgroundColor: "#F8EA8C", padding: "10px 10px",fontSize: "15px"}} >
@@ -194,22 +190,6 @@ console.log($id)
     </TableContainer>
     <EditUser1 keysId={keyId} isDialogOpened={isOpen} handleCloseDialog={() => setIsOpen(false)}/>
             
-          
-      
-        {/* {
-          data.length == 0 ? "" : data.data.map((list,key) => {
-            return (
-              <h1 key={list.Id}>
-                List <br/>
-                
-                Username {list.Username}<br/>
-                Password {list.Password}<br/>
-                UserType {list.UserType}<br/>
-                Allow {list.Allow}<br/>
-              </h1>
-            )
-          })
-        } */}
        
      </div>
         
@@ -220,7 +200,7 @@ console.log($id)
 
 
 
-export default DisplayUs;
-if (document.getElementById('displayU')) {
-  ReactDOM.render(<DisplayUs />, document.getElementById('displayU'));
+export default DisplayItem;
+if (document.getElementById('DisplayItem')) {
+  ReactDOM.render(<DisplayItem />, document.getElementById('DisplayItem'));
 }

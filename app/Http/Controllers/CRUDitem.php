@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Users;
+use App\Models\Inventory;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
-class CRUDuser extends Controller
+class CRUDitem extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +18,13 @@ class CRUDuser extends Controller
     public function index()
     {
         //
-        $select = DB::select('select * from users');
+        $select = DB::select('select * from table_items');
         if($select){
                 return response()-> json(["datas" => $select],200);
         }else{
             return response()->JSON(['ERROR, TRY AGAIN'],422);
         }
+
     }
 
     /**
@@ -46,22 +47,21 @@ class CRUDuser extends Controller
     public function store(Request $request)
     {
         //
-           $username= $request->username;
-           $password= $request->password;
-           $name= $request->name;
-           $usertype= $request->usertype;
-           $allow= $request->allow;
-        //    return response()->json([$usertype,$allow],200);
-        
-                $insertUser=DB::insert("insert into users (Username,Password,Name,UserType,Allow) values (?,?,?,?,?)",[$username,$password,$name,$usertype,$allow]);
+            $ItemName=$request->ItemName;
+            $ItemDesc=$request->ItemDesc;
+            $ItemQuantity=$request->ItemQuantity;
+            $userId= 2;
+            $modifiedBy= 'Name2';
+
+        //  return response()->json([$ItemName,$ItemDesc,$ItemQuantity,$userId,$modifiedBy],200);
+            $insertUser=DB::insert("insert into table_items (ItemName,ItemDesc,ItemQuantity,UserId,modifiedBy) values (?,?,?,?,?)",[$ItemName,$ItemDesc,$ItemQuantity,$userId,$modifiedBy]);
             if($insertUser){
-                return response()->json(["Success"],200);
+                    return response()->json(["Success"],200);
             }else{
-                return response()->json(['responseTExt' => 'ERROR TRY AGAIN'],422);
+                return response()->json(['Response Text'],422);
             }
+    }       
 
-
-    }
 
     /**
      * Display the specified resource.
@@ -72,10 +72,9 @@ class CRUDuser extends Controller
     public function show($id)
     {
         //
-        
-        $selectUser = DB::select("select * from users where id=$id");
-        if($selectUser){
-                return response()-> json(["data1User" => $selectUser],200);
+        $selectItem = DB::select("select * from table_item where id=$id");
+        if($selectItem){
+                return response()-> json(["data1Item" => $selectItem],200);
         }else{
             return response()->JSON(['ERROR, TRY AGAIN'],422);
         }
@@ -92,7 +91,6 @@ class CRUDuser extends Controller
     {
         //
 
-
     }
 
     /**
@@ -105,19 +103,19 @@ class CRUDuser extends Controller
     public function update(Request $request, $id)
     {
         //
-        $username= $request->NewUsername;
-        $password= $request->NewPassword;
-        $name= $request->NewName;
-        $allow= $request->NewAllow;
-        // return response()->json([$username,$password,$name,$allow,'Id:',$id],200);
-            // $updateUser=DB::update("update users (Username,Password,Name,Allow) values (?,?,?,?) where id =$id ", [$username,$password,$name,$allow]);
-            $updateUser=DB::update("update users set Username='$username', Password='$password', Name='$name', Allow=$allow where Id=$id");
+        $ItemName= $request->New;
+        $ItemDesc= $request->New;
+        $ItemQuantity= $request->New;
+        $userId= 2;
+        $modifiedBy= 'Name2';
+        //  return response()->json([$ItemName,$ItemDesc,$ItemQuantity,$userId,$modifiedBy],200);
+
+            $updateUser=DB::update("update table_item set ItemName='$ItemName', ItemDesc='$ItemDesc', ItemQuantity='$ItemQuantity', userId=$userId,modifiedBy='$' where Id=$id");
             if($updateUser){
                 return response()->json(["Success"],200);
             }else{
                 return response()->json(['responseTExt' => 'ERROR TRY AGAIN'],422);
             }
-
     }
 
     /**
@@ -129,11 +127,12 @@ class CRUDuser extends Controller
     public function destroy($id)
     {
         //
-      $deleted = DB::delete("delete from users where id=$id");
-      if($deleted){
-        return response()->json(["Success"],200);
-      }
-      return response()->json(["ERROR"],422);
-       
+        $deleted = DB::delete("delete from users where id=$id");
+        if($deleted){
+            return response()->json(["Success"],200);
+        }else{
+        return response()->json(["ERROR"],422);
+        }
+
     }
 }
