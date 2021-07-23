@@ -74,6 +74,9 @@ Route::get('/welcome', function () {
 // Route::resource('/userCrud','./CRUDuser');
 // Route::post('userLog', 'App\Http\Controllers\userAuth@userLogin');
 
+//Profile
+Route::get('userCrud/profile/{id}', 'App\Http\Controllers\CRUDuser@prof');
+
 //CRUD USER
 //Create User
 Route::post('userCrud', 'App\Http\Controllers\CRUDuser@store');

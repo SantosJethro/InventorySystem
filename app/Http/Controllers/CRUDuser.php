@@ -52,6 +52,7 @@ class CRUDuser extends Controller
            $usertype= $request->usertype;
            $allow= $request->allow;
         //    return response()->json([$usertype,$allow],200);
+
            $exist=DB::select("select username from users where username='$username'");
             if ($exist) {
                 return response()->json(["responseText" => "$username already exist","isError" => true],422);
@@ -76,9 +77,23 @@ class CRUDuser extends Controller
     {
         //
         
-        $selectUser = DB::select("select * from users where id=$id");
+        $selectUser = DB::select("select * from users where UserId=$id");
         if($selectUser){
                 return response()-> json(["data1User" => $selectUser],200);
+        }else{
+            return response()->JSON(['ERROR, TRY AGAIN'],422);
+        }
+
+    }
+
+    public function prof($id)
+    {
+        //
+        $ids=session('Id');
+        $profiles = DB::select("select * from users where UserId=$ids");
+ 
+        if($profiles){
+                return response()-> json(["profile" => $profiles],200);
         }else{
             return response()->JSON(['ERROR, TRY AGAIN'],422);
         }
@@ -114,7 +129,7 @@ class CRUDuser extends Controller
         $allow= $request->NewAllow;
         // return response()->json([$username,$password,$name,$allow,'Id:',$id],200);
             // $updateUser=DB::update("update users (Username,Password,Name,Allow) values (?,?,?,?) where id =$id ", [$username,$password,$name,$allow]);
-            $updateUser=DB::update("update users set Username='$username', Password='$password', Name='$name', Allow=$allow where Id=$id");
+            $updateUser=DB::update("update users set Username='$username', Password='$password', Name='$name', Allow=$allow where UserId=$id");
             if($updateUser){
                 return response()->json(["Success"],200);
             }else{
@@ -132,7 +147,8 @@ class CRUDuser extends Controller
     public function destroy($id)
     {
         //
-      $deleted = DB::delete("delete from users where id=$id");
+  
+      $deleted = DB::delete("delete from users where UserId=$id");
       if($deleted){
         return response()->json(["Success"],200);
       }

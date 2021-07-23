@@ -158,7 +158,7 @@ console.log($id)
           { 
             data.length == 0 ? "" : data.data.map((list) => {
               return(
-              <StyledTableRow key={list.Id}>
+              <StyledTableRow key={list.ItemId}>
                 <StyledTableCell>
                   {list.ItemName}
                 </StyledTableCell>
@@ -173,11 +173,11 @@ console.log($id)
 
 
                 <StyledTableCell>
-                  <button onClick={() => editItem(list.Id)} style={{ borderRadius: 20, backgroundColor: "#F8EA8C", padding: "10px 10px",fontSize: "15px"}} >
+                  <button onClick={() => editItem(list.ItemId)} style={{ borderRadius: 20, backgroundColor: "#F8EA8C", padding: "10px 10px",fontSize: "15px"}} >
                     Edit 
                    
                   </button > 
-                  <button onClick={() => DeleteUser(list.Id)} style={{ borderRadius: 20, backgroundColor: "#FA270E", padding: "10px 10px",fontSize: "15px"}}>
+                  <button onClick={() => DeleteUser(list.ItemId)} style={{ borderRadius: 20, backgroundColor: "#FA270E", padding: "10px 10px",fontSize: "15px"}}>
                     Delete
                     </button>
                 </StyledTableCell>

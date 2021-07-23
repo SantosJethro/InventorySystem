@@ -74,7 +74,7 @@ class CRUDitem extends Controller
         //
         
       
-        $selectItem = DB::select("select * from table_items where id=$id");
+        $selectItem = DB::select("select * from table_items where ItemId=$id");
         if($selectItem){
                 return response()-> json(["data1Item" => $selectItem],200);
         }else{
@@ -112,7 +112,7 @@ class CRUDitem extends Controller
         $modifiedBy= session('Name');
         //  return response()->json([$ItemName,$ItemDesc,$ItemQuantity,$userId,$modifiedBy],200);
 
-            $updateUser=DB::update("update table_items set ItemName='$ItemName', ItemDesc='$ItemDesc', ItemQuantity='$ItemQuantity', userId=$userId,modifiedBy='$modifiedBy' where Id=$id");
+            $updateUser=DB::update("update table_items set ItemName='$ItemName', ItemDesc='$ItemDesc', ItemQuantity='$ItemQuantity', UserId=$userId,modifiedBy='$modifiedBy' where ItemId=$id");
             if($updateUser){
                 return response()->json(["Success"],200);
             }else{
@@ -129,7 +129,7 @@ class CRUDitem extends Controller
     public function destroy($id)
     {
         //
-        $deleted = DB::delete("delete from table_items where id=$id");
+        $deleted = DB::delete("delete from table_items where ItemId=$id");
         if($deleted){
             return response()->json(["Success"],200);
         }else{

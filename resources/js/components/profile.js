@@ -16,6 +16,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import AccountBoxSharpIcon from '@material-ui/icons/AccountBoxSharp';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,12 +34,82 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: red[500],
-  },
+  },cus:{
+      color: "white"
+  }
 }));
 
  function Profile() {
   const classes = useStyles();
+  const myDate = new Date();
+  const hour = myDate.getHours();
+  const [greet, setGreet] = useState();
+  const [username, setUsername] = useState();
+  const [name, setName] = useState();
+  const [usertype, setUsertype] = useState();
+  const id= (2);
   
+  const GreetMe = () => {
+    if (hour < 12){
+        setGreet(
+            'Good Morning'
+        )
+  }else if (hour >= 12 && hour <= 17){
+        setGreet(
+            'Good Afternoon'
+        )
+       
+    }else if (hour >= 17 && hour <= 24){
+        setGreet(
+            'Good Evening'
+        )
+    }else{
+            setGreet(
+                'Good Day'
+            ) 
+        }
+  }
+
+  const read1 = () => {
+    const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const request = {
+        method: "POST",
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-TOKEN': token,
+        },
+        body: JSON.stringify(id),
+      }
+    
+       fetch(`userCrud/profile/${id}/`,request)
+      .then(response=> response.json())
+      .then((result)=> {
+          console.log(result)
+        // console.log('dddd',result.profile[0].Name)
+        // console.log('dddd2',result.profile[0].Username)
+        // console.log('dddd3',result.profile[0].UserType)
+        setName(
+          result.profile[0].Name
+        )
+        setUsername(
+           result.profile[0].Username
+        )
+        setUsertype(
+           result.profile[0].UserType
+        )
+        
+        
+      });
+   
+
+    
+    }
+  useEffect(() => {
+    read1();
+  }, []);
+  useEffect(() => {
+    GreetMe();
+  }, []);
 
   return (
     <Card className={classes.root} style={{backgroundColor: "Black"}}>
@@ -56,7 +127,23 @@ const useStyles = makeStyles((theme) => ({
         title="RADJ Telcom Network Services"
       />
       <CardContent>
-        <AccountBoxSharpIcon style={{color: "red"}}/><br/>
+      <Typography className={classes.cus} variant="h5">{greet}</Typography>
+        <Grid container spacing={1}>
+            <Grid item xs={2}>
+                <AccountBoxSharpIcon style={{color: "red",height: "50",width: "50"}}/>
+            </Grid>
+            <Grid item xs>
+                <div className={classes.cus}>
+                    <Typography>Name: {name}</Typography>
+                    <Typography>Username: {username}</Typography>
+                    <Typography>I am a {usertype == 1 ? "Admin" : "Stockman"}</Typography>
+                </div>
+            </Grid>
+        </Grid>
+        
+            
+       
+      
       </CardContent>
       
     </Card>

@@ -8,6 +8,8 @@ import Paper from '@material-ui/core/Paper';
 import Collapse from '@material-ui/core/Collapse';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
+import Profile from './profile';
+
 import CreateUserF from './CreateUserF';
 import DisplayUs from './DisplayUser';
 
@@ -30,9 +32,13 @@ function Adminpage() {
       
         <div style={{ backgroundColor: '#B9B49E'}}>
             <Navbar />
+          
             <Grid container spacing={1}>
                 <Grid item xs={1}></Grid>
-                <Grid item xs={10}>
+                <Grid item xs={2}>
+                     <Profile />
+                </Grid>
+                <Grid item xs={8}>
                 <FormControlLabel
                       control={<Switch checked={checkedUser} onChange={handleChangeUser} />}
                       label="Show Create/Update/Delete Users"

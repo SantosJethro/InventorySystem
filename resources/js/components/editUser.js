@@ -130,7 +130,7 @@ function EditUser(props) {
         
         console.log(result);
         handleClose()
-        // window.location = './redirect'
+         window.location = './redirect'
         
       });
     };
