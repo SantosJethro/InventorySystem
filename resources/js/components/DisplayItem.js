@@ -123,6 +123,7 @@ console.log($id)
     .then(response=> response.json())
     .then((result)=> {
       console.log(result)
+      window.location = './redirect';
     }).catch(error => {
       console.log(error)
     },

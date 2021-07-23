@@ -89,6 +89,9 @@ Route::post('userCrud/update/{id}', 'App\Http\Controllers\CRUDuser@update');
 //Delete User
 Route::post('userCrud/delete/{id}', 'App\Http\Controllers\CRUDuser@destroy');
 
+//edit Password
+Route::post('userCrud/updatePass', 'App\Http\Controllers\CRUDuser@update1');
+
 
 //CRUD Item
 //Create Item

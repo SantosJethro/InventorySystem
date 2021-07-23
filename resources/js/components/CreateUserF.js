@@ -55,40 +55,56 @@ function CreateUserF() {
 
 
   const CreateUser = () => {
-    const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    const data = {
-      username:Username,
-      password:Password,
-      name:Name,
-      usertype:Usertype,
-      allow:Allow,
-    };
+    if(Name == null){
+      alert("Error Name cannot be empty")
+      
+    }else if(Username == null){
+      alert("Error Username cannot be empty")
+     
+    }else if(Password == null){
+      alert("Error Password cannot be empty")
 
-    const request = {
-      method: "POST",
-      // redirect: 'follow',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-CSRF-TOKEN': token,
-      },
-      body: JSON.stringify(data),
-    }
-     fetch('./userCrud',request)
-    .then(response=> response.json())
-    .then((result)=> {
-      if(result.isError) {
-        alert(result.responseText)
-      }else {
-        console.log(result);
-        window.location = './redirect';
+    }else if(Usertype == null){
+      alert("Error Please Select Admin or Stockman")
+
+    }else if(Allow == null){
+      alert("Error Please Select Yes or No")
+    }else{
+          const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+          const data = {
+            username:Username,
+            password:Password,
+            name:Name,
+            usertype:Usertype,
+            allow:Allow,
+          };
+
+          const request = {
+            method: "POST",
+            // redirect: 'follow',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'X-CSRF-TOKEN': token,
+            },
+            body: JSON.stringify(data),
+          }
+          fetch('./userCrud',request)
+          .then(response=> response.json())
+          .then((result)=> {
+            if(result.isError) {
+              alert(result.responseText)
+            }else {
+              console.log(result);
+              window.location = './redirect';
+            }
+              
+          }).catch(error => {
+            alert("Error::",error.response.data);
+            //  response => alert(JSON.stringify(response.data))
+
+              });
       }
-        
-    }).catch(error => {
-       alert("Error::",error.response.data);
-      //  response => alert(JSON.stringify(response.data))
-
-        });
   };
 
  

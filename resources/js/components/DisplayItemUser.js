@@ -16,7 +16,7 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import EditUser1 from './editUser';
+import EditItem from './editItem';
 import DialogContent from '@material-ui/core/DialogContent';
 import Modal from '@material-ui/core/Modal';
 import { Replay10Rounded, SettingsInputComponent, SettingsPowerRounded } from '@material-ui/icons';
@@ -68,7 +68,7 @@ const buttonStyles = {
   },
 }
 
-function DisplayUs() {
+function DisplayItemUser() {
   const classes = useStyles();
   const [data, setData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -83,8 +83,8 @@ function DisplayUs() {
     setIsOpen(isOpen);
   };
   
-  const AllUser = () => {
-   fetch('./userAll')
+  const AllItem = () => {
+   fetch('./itemAll')
    .then(response=> response.json())
     .then((result)=> {
       setData({
@@ -96,7 +96,8 @@ function DisplayUs() {
     },
        )
       };
-    const EditUser = ($id) => {
+
+  const editItem = ($id) => {
       
      handleOpen();
      setkeyId($id);
@@ -116,42 +117,40 @@ function DisplayUs() {
       },
       body: JSON.stringify(id),
     }
-    if(confirm("Delete this User?")){
-    console.log($id)
-    fetch(`userCrud/delete/${id}`,request)
+    if(confirm("Delete this Item?")){
+console.log($id)
+    fetch(`itemCrud/delete/${id}`,request)
     .then(response=> response.json())
     .then((result)=> {
       console.log(result)
       window.location = './redirect';
     }).catch(error => {
       console.log(error)
-      window.location = './redirect';
     },
        )
     }else{
-      alert('Delete User Failed')
+      alert('Delete Item Failed')
     }
      };
     
 
      useEffect(()=>{
-      AllUser();
+      AllItem();
      },[]);
     
     return (
       
       <div>
       
-      {/* <EditUser open onclose id={id}/> */}
+      {/* <editItem open onclose id={id}/> */}
      
     <TableContainer component={Paper}>
       <Table aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell>Username</StyledTableCell>
-            <StyledTableCell>Password</StyledTableCell>
-            <StyledTableCell>Allow</StyledTableCell>
+            <StyledTableCell>Item Name</StyledTableCell>
+            <StyledTableCell>Item Desc</StyledTableCell>
+            <StyledTableCell>Item Quantity</StyledTableCell>
             <StyledTableCell>Action</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -160,31 +159,24 @@ function DisplayUs() {
           { 
             data.length == 0 ? "" : data.data.map((list) => {
               return(
-              <StyledTableRow key={list.UserId}>
+              <StyledTableRow key={list.ItemId}>
                 <StyledTableCell>
-                  {list.Name}
+                  {list.ItemName}
                 </StyledTableCell>
 
                 <StyledTableCell>
-                  {list.Username}
+                  {list.ItemDesc}
                 </StyledTableCell>
 
                 <StyledTableCell>
-                 {list.Password}
+                 {list.ItemQuantity}
                 </StyledTableCell>
 
-                <StyledTableCell>
-                  {list.Allow == 1 ? "YES" : "NO"}
-                </StyledTableCell>
 
                 <StyledTableCell>
-                  <button onClick={() => EditUser(list.UserId)} style={{ borderRadius: 20, backgroundColor: "#F8EA8C", padding: "10px 10px",fontSize: "15px"}} >
+                  <button onClick={() => editItem(list.ItemId)} style={{ borderRadius: 20, backgroundColor: "#F8EA8C", padding: "10px 10px",fontSize: "15px"}} >
                     Edit 
-                   
                   </button > 
-                  <button onClick={() => DeleteUser(list.UserId)} style={{ borderRadius: 20, backgroundColor: "#FA270E", padding: "10px 10px",fontSize: "15px"}}>
-                    Delete
-                    </button>
                 </StyledTableCell>
 
               </StyledTableRow>
@@ -194,24 +186,8 @@ function DisplayUs() {
         </TableBody>
       </Table>
     </TableContainer>
-    <EditUser1 keysId={keyId} isDialogOpened={isOpen} handleCloseDialog={() => setIsOpen(false)}/>
+    <EditItem keysId={keyId} isDialogOpened={isOpen} handleCloseDialog={() => setIsOpen(false)}/>
             
-          
-      
-        {/* {
-          data.length == 0 ? "" : data.data.map((list,key) => {
-            return (
-              <h1 key={list.Id}>
-                List <br/>
-                
-                Username {list.Username}<br/>
-                Password {list.Password}<br/>
-                UserType {list.UserType}<br/>
-                Allow {list.Allow}<br/>
-              </h1>
-            )
-          })
-        } */}
        
      </div>
         
@@ -222,7 +198,7 @@ function DisplayUs() {
 
 
 
-export default DisplayUs;
-if (document.getElementById('displayU')) {
-  ReactDOM.render(<DisplayUs />, document.getElementById('displayU'));
+export default DisplayItemUser;
+if (document.getElementById('DisplayItemUser')) {
+  ReactDOM.render(<DisplayItemUser />, document.getElementById('DisplayItemUser'));
 }

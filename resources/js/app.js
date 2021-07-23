@@ -25,6 +25,7 @@ require('./components/navbar');
 require('./components/profile');
 require('./components/trial');
 require('./components/trials');
+require('./components/userPage');
 
 
 // require('./components/app1');

@@ -123,41 +123,50 @@ function EditItem(props) {
 
 
     const update = () => {
-     
-      const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
-      const UserData = {
-        NewItemName:NewItemName,
-        NewItemDesc:NewItemDesc,
-        NewItemQuantity:NewItemQuantity,
-     
-      };
       
-      const request = {
-        method: "POST",
-        // redirect: 'follow',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'X-CSRF-TOKEN': token,
-        },
-        body: JSON.stringify(UserData),
-      }
-      console.log('EDIT');
-      fetch(`./itemCrud/update/${keysId}`,request)
-      .then(response=> response.json())
-      .then((result)=> {
-        
-        console.log(result);
-        handleClose()
-        // window.location = './redirect'
-        
-      });
-    };
+        const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const UserData = {
+          NewItemName:NewItemName,
+          NewItemDesc:NewItemDesc,
+          NewItemQuantity:NewItemQuantity,
+      
+        };
+        if(NewItemName == ""){
+          alert("Error Item name cannot be empty")
+          
+        }else if(NewItemDesc == ""){
+          alert("Error Item Description cannot be empty")
+         
+        }else if(NewItemQuantity == ""){
+          alert("Error Item Quantity cannot be empty")
+          
+        }else{
+        const request = {
+          method: "POST",
+          // redirect: 'follow',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': token,
+          },
+          body: JSON.stringify(UserData),
+        }
+        console.log('EDIT');
+        fetch(`./itemCrud/update/${keysId}`,request)
+        .then(response=> response.json())
+        .then((result)=> {
+          
+          console.log(result);
+          handleClose()
+          window.location = './redirect'
+          
+        });
+      };
+    }
 
     const cancel = () => {
       handleClose()
       console.log("ABORTED UPDATE ITEMS")
-      // window.location = './redirect'
      
     }
     

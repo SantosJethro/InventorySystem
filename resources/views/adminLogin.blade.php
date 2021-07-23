@@ -2,11 +2,13 @@
 
 @section('content')
 
+@if(session('userT') == 1)
+        <div id="adminPage">
+        </div>
+@else
+    <script>window.location = "./user";</script>
+@endif
 
-<div id="adminPage">
-</div>
-
-<h1>HEllo Page admin</h1>
 </div>
 
 

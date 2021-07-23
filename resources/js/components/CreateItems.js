@@ -60,36 +60,51 @@ function CreateItemF() {
     handleCloseDialog(true);
   };
 
+   
+
 
   const CreateItem = () => {
-    const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    const itemData = {
-      ItemName:ItemName,
-      ItemDesc:ItemDesc,
-      ItemQuantity:ItemQuantity,
-    };
-    
-    const request = {
-      method: "POST",
+    if(ItemName == null){
+      alert("Error Item name cannot be empty")
+      
+    }else if(ItemDesc == null){
+      alert("Error Item Description cannot be empty")
      
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-CSRF-TOKEN': token,
-      },
-      body: JSON.stringify(itemData),
+    }else if(ItemQuantity == null){
+      alert("Error Item Quantity cannot be empty")
+      
+    }else{
+      const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      const itemData = {
+        ItemName:ItemName,
+        ItemDesc:ItemDesc,
+        ItemQuantity:ItemQuantity,
+      };
+      
+      const request = {
+        method: "POST",
+       
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': token,
+        },
+        body: JSON.stringify(itemData),
+      }
+       fetch('./itemCrud',request)
+      .then(response=> response.json())
+      .then((result)=> {
+        console.log(result);
+        window.location = './redirect';
+      }).catch(error => {
+        alert("ERRor::",error.response.data);
+         response => alert(JSON.stringify(response.data))
+       
+          
+       });
     }
-     fetch('./itemCrud',request)
-    .then(response=> response.json())
-    .then((result)=> {
-      console.log(result);
-        
-    }).catch(error => {
-      alert("ERRor::",error.response.data);
-       response => alert(JSON.stringify(response.data))
-     
-        
-        });
+ 
+ 
   };
 
   const cancel = () => {

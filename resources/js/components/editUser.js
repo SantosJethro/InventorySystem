@@ -75,13 +75,12 @@ function EditUser(props) {
         },
         body: JSON.stringify(keysId),
       }
-      console.log('hahaha',keysId)
+     
        fetch(`userSingle/${keysId}`,request)
       .then(response=> response.json())
       .then((result)=> {
       
      
-        console.log('dddd',result.data1User[0].Allow)
         setNewName(
           result.data1User[0].Name
         )
@@ -104,36 +103,48 @@ function EditUser(props) {
 
 
     const update = () => {
-     
-      const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
-      const UserData = {
-        NewName:NewName,
-        NewUsername:NewUsername,
-        NewPassword:NewPassword,
-        NewAllow:NewAllow,
-      };
-      
-      const request = {
-        method: "POST",
-        // redirect: 'follow',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'X-CSRF-TOKEN': token,
-        },
-        body: JSON.stringify(UserData),
-      }
-      console.log('EDIT');
-      fetch(`./userCrud/update/${keysId}`,request)
-      .then(response=> response.json())
-      .then((result)=> {
+      if(NewName == ""){
+        alert("Error Name cannot be empty")
         
-        console.log(result);
-        handleClose()
-         window.location = './redirect'
+      }else if(NewUsername == ""){
+        alert("Error Username cannot be empty")
+       
+      }else if(NewPassword == ""){
+        alert("Error Password cannot be empty")
+      
+      }else if(NewAllow == ""){
+        alert("Error Please Select Yes or No")
+      }else{
+            const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const UserData = {
+              NewName:NewName,
+              NewUsername:NewUsername,
+              NewPassword:NewPassword,
+              NewAllow:NewAllow,
+            };
+            
+            const request = {
+              method: "POST",
+              // redirect: 'follow',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': token,
+              },
+              body: JSON.stringify(UserData),
+            }
+            console.log('EDIT');
+            fetch(`./userCrud/update/${keysId}`,request)
+            .then(response=> response.json())
+            .then((result)=> {
+              
+              console.log(result);
+              handleClose()
+              window.location = './redirect'
         
       });
-    };
+    }
+  };
 
     const cancel = () => {
       handleClose()

@@ -37,7 +37,7 @@ class userAuth extends Controller
                     $Name = $found->Name;
                    break;
                 }
-                session()->put('Id',$UserId);
+                session()->put('Id',$userID);
                 session()->put('Name',$Name);
                  session()->put('Username',$username);
                  session()->put('Password',$password);

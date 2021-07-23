@@ -138,6 +138,22 @@ class CRUDuser extends Controller
 
     }
 
+    public function update1(Request $request)
+    {
+        //
+        $password= $request->NewPassword;
+        $id = session('Id');
+        // return response()->json([$username,$password,$name,$allow,'Id:',$id],200);
+            // $updateUser=DB::update("update users (Username,Password,Name,Allow) values (?,?,?,?) where id =$id ", [$username,$password,$name,$allow]);
+            $updateUser=DB::update("update users set Password='$password' where UserId=$id");
+            if($updateUser){
+                return response()->json(["Success"],200);
+            }else{
+                return response()->json(['responseTExt' => 'ERROR TRY AGAIN'],422);
+            }
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *

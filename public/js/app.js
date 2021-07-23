@@ -21568,7 +21568,9 @@ __webpack_require__(/*! ./components/profile */ "./resources/js/components/profi
 
 __webpack_require__(/*! ./components/trial */ "./resources/js/components/trial.js");
 
-__webpack_require__(/*! ./components/trials */ "./resources/js/components/trials.js"); // require('./components/app1');
+__webpack_require__(/*! ./components/trials */ "./resources/js/components/trials.js");
+
+__webpack_require__(/*! ./components/userPage */ "./resources/js/components/userPage.js"); // require('./components/app1');
 
 /***/ }),
 
@@ -21732,32 +21734,41 @@ function CreateItemF() {
   };
 
   var CreateItem = function CreateItem() {
-    var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var itemData = {
-      ItemName: ItemName,
-      ItemDesc: ItemDesc,
-      ItemQuantity: ItemQuantity
-    };
-    var request = {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-CSRF-TOKEN': token
-      },
-      body: JSON.stringify(itemData)
-    };
-    fetch('./itemCrud', request).then(function (response) {
-      return response.json();
-    }).then(function (result) {
-      console.log(result);
-    })["catch"](function (error) {
-      alert("ERRor::", error.response.data);
+    if (ItemName == null) {
+      alert("Error Item name cannot be empty");
+    } else if (ItemDesc == null) {
+      alert("Error Item Description cannot be empty");
+    } else if (ItemQuantity == null) {
+      alert("Error Item Quantity cannot be empty");
+    } else {
+      var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      var itemData = {
+        ItemName: ItemName,
+        ItemDesc: ItemDesc,
+        ItemQuantity: ItemQuantity
+      };
+      var request = {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': token
+        },
+        body: JSON.stringify(itemData)
+      };
+      fetch('./itemCrud', request).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        console.log(result);
+        window.location = './redirect';
+      })["catch"](function (error) {
+        alert("ERRor::", error.response.data);
 
-      (function (response) {
-        return alert(JSON.stringify(response.data));
+        (function (response) {
+          return alert(JSON.stringify(response.data));
+        });
       });
-    });
+    }
   };
 
   var cancel = function cancel() {
@@ -21979,36 +21990,48 @@ function CreateUserF() {
       setAllow = _useState10[1];
 
   var CreateUser = function CreateUser() {
-    var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var data = {
-      username: Username,
-      password: Password,
-      name: Name,
-      usertype: Usertype,
-      allow: Allow
-    };
-    var request = {
-      method: "POST",
-      // redirect: 'follow',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-CSRF-TOKEN': token
-      },
-      body: JSON.stringify(data)
-    };
-    fetch('./userCrud', request).then(function (response) {
-      return response.json();
-    }).then(function (result) {
-      if (result.isError) {
-        alert(result.responseText);
-      } else {
-        console.log(result);
-        window.location = './redirect';
-      }
-    })["catch"](function (error) {
-      alert("Error::", error.response.data); //  response => alert(JSON.stringify(response.data))
-    });
+    if (Name == null) {
+      alert("Error Name cannot be empty");
+    } else if (Username == null) {
+      alert("Error Username cannot be empty");
+    } else if (Password == null) {
+      alert("Error Password cannot be empty");
+    } else if (Usertype == null) {
+      alert("Error Please Select Admin or Stockman");
+    } else if (Allow == null) {
+      alert("Error Please Select Yes or No");
+    } else {
+      var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      var data = {
+        username: Username,
+        password: Password,
+        name: Name,
+        usertype: Usertype,
+        allow: Allow
+      };
+      var request = {
+        method: "POST",
+        // redirect: 'follow',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': token
+        },
+        body: JSON.stringify(data)
+      };
+      fetch('./userCrud', request).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        if (result.isError) {
+          alert(result.responseText);
+        } else {
+          console.log(result);
+          window.location = './redirect';
+        }
+      })["catch"](function (error) {
+        alert("Error::", error.response.data); //  response => alert(JSON.stringify(response.data))
+      });
+    }
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -22340,6 +22363,7 @@ function DisplayItem() {
         return response.json();
       }).then(function (result) {
         console.log(result);
+        window.location = './redirect';
       })["catch"](function (error) {
         console.log(error);
       });
@@ -22420,6 +22444,254 @@ function DisplayItem() {
 
 if (document.getElementById('DisplayItem')) {
   react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(DisplayItem, {}), document.getElementById('DisplayItem'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/DisplayItemUser.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/DisplayItemUser.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/makeStyles.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/withStyles.js");
+/* harmony import */ var _material_ui_core_Table__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Table */ "./node_modules/@material-ui/core/esm/Table/Table.js");
+/* harmony import */ var _material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/core/TableBody */ "./node_modules/@material-ui/core/esm/TableBody/TableBody.js");
+/* harmony import */ var _material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/TableCell */ "./node_modules/@material-ui/core/esm/TableCell/TableCell.js");
+/* harmony import */ var _material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/TableContainer */ "./node_modules/@material-ui/core/esm/TableContainer/TableContainer.js");
+/* harmony import */ var _material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core/TableHead */ "./node_modules/@material-ui/core/esm/TableHead/TableHead.js");
+/* harmony import */ var _material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/TableRow */ "./node_modules/@material-ui/core/esm/TableRow/TableRow.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _editItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editItem */ "./resources/js/components/editItem.js");
+/* harmony import */ var postcss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! postcss */ "./node_modules/postcss/lib/postcss.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var useStyles = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__.default)(function (theme) {
+  return {
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2)
+    }
+  };
+});
+var StyledTableCell = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__.default)(function (theme) {
+  return {
+    head: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white
+    },
+    body: {
+      fontSize: 14
+    }
+  };
+})(_material_ui_core_TableCell__WEBPACK_IMPORTED_MODULE_7__.default);
+var StyledTableRow = (0,_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__.default)(function (theme) {
+  return {
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: "green"
+      },
+      '&:nth-of-type(even)': {
+        backgroundColor: "orange"
+      }
+    }
+  };
+})(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_8__.default);
+var buttonStyles = {
+  warning: {
+    backgroundColor: "#F8EA8C",
+    padding: "10px 10px",
+    fontSize: "8px"
+  },
+  danger: {
+    backgroundColor: "#FA270E",
+    padding: "10px 10px",
+    fontSize: "8px"
+  }
+};
+
+function DisplayItemUser() {
+  var classes = useStyles();
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isOpen = _useState4[0],
+      setIsOpen = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      open = _useState6[0],
+      setOpen = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
+      _useState8 = _slicedToArray(_useState7, 2),
+      keyId = _useState8[0],
+      setkeyId = _useState8[1];
+
+  var handleOpen = function handleOpen() {
+    setIsOpen(!isOpen);
+  };
+
+  var handleClose = function handleClose() {
+    setIsOpen(isOpen);
+  };
+
+  var AllItem = function AllItem() {
+    fetch('./itemAll').then(function (response) {
+      return response.json();
+    }).then(function (result) {
+      setData({
+        data: result.datas
+      });
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  };
+
+  var editItem = function editItem($id) {
+    handleOpen();
+    setkeyId($id); //  console.log($id)
+  };
+
+  var DeleteUser = function DeleteUser($id) {
+    var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    var id = $id;
+    var request = {
+      method: "POST",
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-TOKEN': token
+      },
+      body: JSON.stringify(id)
+    };
+
+    if (confirm("Delete this Item?")) {
+      console.log($id);
+      fetch("itemCrud/delete/".concat(id), request).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        console.log(result);
+        window.location = './redirect';
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    } else {
+      alert('Delete Item Failed');
+    }
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    AllItem();
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_TableContainer__WEBPACK_IMPORTED_MODULE_9__.default, {
+      component: _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_10__.default,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core_Table__WEBPACK_IMPORTED_MODULE_11__.default, {
+        "aria-label": "customized table",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_TableHead__WEBPACK_IMPORTED_MODULE_12__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core_TableRow__WEBPACK_IMPORTED_MODULE_8__.default, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StyledTableCell, {
+              children: "Item Name"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StyledTableCell, {
+              children: "Item Desc"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StyledTableCell, {
+              children: "Item Quantity"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StyledTableCell, {
+              children: "Action"
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_TableBody__WEBPACK_IMPORTED_MODULE_13__.default, {
+          children: data.length == 0 ? "" : data.data.map(function (list) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(StyledTableRow, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StyledTableCell, {
+                children: list.ItemName
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StyledTableCell, {
+                children: list.ItemDesc
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StyledTableCell, {
+                children: list.ItemQuantity
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StyledTableCell, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                  onClick: function onClick() {
+                    return editItem(list.ItemId);
+                  },
+                  style: {
+                    borderRadius: 20,
+                    backgroundColor: "#F8EA8C",
+                    padding: "10px 10px",
+                    fontSize: "15px"
+                  },
+                  children: "Edit"
+                })
+              })]
+            }, list.ItemId);
+          })
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_editItem__WEBPACK_IMPORTED_MODULE_2__.default, {
+      keysId: keyId,
+      isDialogOpened: isOpen,
+      handleCloseDialog: function handleCloseDialog() {
+        return setIsOpen(false);
+      }
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DisplayItemUser);
+
+if (document.getElementById('DisplayItemUser')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(DisplayItemUser, {}), document.getElementById('DisplayItemUser'));
 }
 
 /***/ }),
@@ -22598,8 +22870,10 @@ function DisplayUs() {
         return response.json();
       }).then(function (result) {
         console.log(result);
+        window.location = './redirect';
       })["catch"](function (error) {
         console.log(error);
+        window.location = './redirect';
       });
     } else {
       alert('Delete User Failed');
@@ -23135,28 +23409,40 @@ function EditItem(props) {
       NewItemDesc: NewItemDesc,
       NewItemQuantity: NewItemQuantity
     };
-    var request = {
-      method: "POST",
-      // redirect: 'follow',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-CSRF-TOKEN': token
-      },
-      body: JSON.stringify(UserData)
-    };
-    console.log('EDIT');
-    fetch("./itemCrud/update/".concat(keysId), request).then(function (response) {
-      return response.json();
-    }).then(function (result) {
-      console.log(result);
-      handleClose(); // window.location = './redirect'
-    });
+
+    if (NewItemName == "") {
+      alert("Error Item name cannot be empty");
+    } else if (NewItemDesc == "") {
+      alert("Error Item Description cannot be empty");
+    } else if (NewItemQuantity == "") {
+      alert("Error Item Quantity cannot be empty");
+    } else {
+      var request = {
+        method: "POST",
+        // redirect: 'follow',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': token
+        },
+        body: JSON.stringify(UserData)
+      };
+      console.log('EDIT');
+      fetch("./itemCrud/update/".concat(keysId), request).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        console.log(result);
+        handleClose();
+        window.location = './redirect';
+      });
+    }
+
+    ;
   };
 
   var cancel = function cancel() {
     handleClose();
-    console.log("ABORTED UPDATE ITEMS"); // window.location = './redirect'
+    console.log("ABORTED UPDATE ITEMS");
   }; // useEffect(()=>{
   //   read1();
   //  },keysId);
@@ -23419,11 +23705,9 @@ function EditUser(props) {
       },
       body: JSON.stringify(keysId)
     };
-    console.log('hahaha', keysId);
     fetch("userSingle/".concat(keysId), request).then(function (response) {
       return response.json();
     }).then(function (result) {
-      console.log('dddd', result.data1User[0].Allow);
       setNewName(result.data1User[0].Name);
       setNewPassword(result.data1User[0].Password);
       setNewUsername(result.data1User[0].Username);
@@ -23432,31 +23716,41 @@ function EditUser(props) {
   };
 
   var update = function update() {
-    var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var UserData = {
-      NewName: NewName,
-      NewUsername: NewUsername,
-      NewPassword: NewPassword,
-      NewAllow: NewAllow
-    };
-    var request = {
-      method: "POST",
-      // redirect: 'follow',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-CSRF-TOKEN': token
-      },
-      body: JSON.stringify(UserData)
-    };
-    console.log('EDIT');
-    fetch("./userCrud/update/".concat(keysId), request).then(function (response) {
-      return response.json();
-    }).then(function (result) {
-      console.log(result);
-      handleClose();
-      window.location = './redirect';
-    });
+    if (NewName == "") {
+      alert("Error Name cannot be empty");
+    } else if (NewUsername == "") {
+      alert("Error Username cannot be empty");
+    } else if (NewPassword == "") {
+      alert("Error Password cannot be empty");
+    } else if (NewAllow == "") {
+      alert("Error Please Select Yes or No");
+    } else {
+      var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      var UserData = {
+        NewName: NewName,
+        NewUsername: NewUsername,
+        NewPassword: NewPassword,
+        NewAllow: NewAllow
+      };
+      var request = {
+        method: "POST",
+        // redirect: 'follow',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': token
+        },
+        body: JSON.stringify(UserData)
+      };
+      console.log('EDIT');
+      fetch("./userCrud/update/".concat(keysId), request).then(function (response) {
+        return response.json();
+      }).then(function (result) {
+        console.log(result);
+        handleClose();
+        window.location = './redirect';
+      });
+    }
   };
 
   var cancel = function cancel() {
@@ -24525,6 +24819,192 @@ function DisplayUs() {
 
 if (document.getElementById('displayU')) {
   react_dom__WEBPACK_IMPORTED_MODULE_0__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(DisplayUs, {}), document.getElementById('displayU'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/userPage.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/userPage.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar */ "./resources/js/components/navbar.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/Grid.js");
+/* harmony import */ var _material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/Switch */ "./node_modules/@material-ui/core/esm/Switch/Switch.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/Paper.js");
+/* harmony import */ var _material_ui_core_Collapse__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @material-ui/core/Collapse */ "./node_modules/@material-ui/core/esm/Collapse/Collapse.js");
+/* harmony import */ var _material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/FormControlLabel */ "./node_modules/@material-ui/core/esm/FormControlLabel/FormControlLabel.js");
+/* harmony import */ var _material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/core/TextField */ "./node_modules/@material-ui/core/esm/TextField/TextField.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./resources/js/components/profile.js");
+/* harmony import */ var _CreateItems__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CreateItems */ "./resources/js/components/CreateItems.js");
+/* harmony import */ var _DisplayItemUser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./DisplayItemUser */ "./resources/js/components/DisplayItemUser.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function Userpage() {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      checkedItem = _React$useState2[0],
+      setCheckedItem = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      checkedPassChange = _React$useState4[0],
+      setPassChange = _React$useState4[1];
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState2 = _slicedToArray(_useState, 2),
+      NewPassword = _useState2[0],
+      setNewPassword = _useState2[1];
+
+  var handleChangePass = function handleChangePass() {
+    setPassChange(function (prev) {
+      return !prev;
+    });
+  };
+
+  var handleChangeItem = function handleChangeItem() {
+    setCheckedItem(function (prev) {
+      return !prev;
+    });
+  };
+
+  var update = function update() {
+    if (NewPassword == "") {
+      alert("Error Password cannot be empty");
+    } else {
+      var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      var UserData = {
+        NewPassword: NewPassword
+      };
+      var request = {
+        method: "POST",
+        // redirect: 'follow',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': token
+        },
+        body: JSON.stringify(UserData)
+      };
+
+      if (confirm("Are You Sure?")) {
+        console.log('Password Change');
+        fetch("./userCrud/updatePass", request).then(function (response) {
+          return response.json();
+        }).then(function (result) {
+          console.log(result);
+          window.location = './redirect';
+        });
+      } else {
+        alert("Password Change Aborted");
+      }
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    style: {
+      backgroundColor: '#B9B49E'
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_navbar__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__.default, {
+      container: true,
+      spacing: 1,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__.default, {
+        item: true,
+        xs: 1
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__.default, {
+        item: true,
+        xs: 2,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_profile__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_8__.default, {
+          control: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_9__.default, {
+            checked: checkedPassChange,
+            onChange: handleChangePass
+          }),
+          label: "Change your password?"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_material_ui_core_Collapse__WEBPACK_IMPORTED_MODULE_10__.default, {
+          "in": checkedPassChange,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_11__.default, {
+            elevation: 4,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core_TextField__WEBPACK_IMPORTED_MODULE_12__.default, {
+              label: "New Password",
+              variant: "filled",
+              type: "password",
+              value: NewPassword,
+              onChange: function onChange(event) {
+                return setNewPassword(event.target.value);
+              },
+              fullWidth: true
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+            onClick: update,
+            style: {
+              borderRadius: 20,
+              backgroundColor: "#F8DE7E",
+              padding: "10px 10px",
+              fontSize: "15px"
+            },
+            children: "Update Password"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_7__.default, {
+        item: true,
+        xs: 8,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core_FormControlLabel__WEBPACK_IMPORTED_MODULE_8__.default, {
+          control: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core_Switch__WEBPACK_IMPORTED_MODULE_9__.default, {
+            checked: checkedItem,
+            onChange: handleChangeItem
+          }),
+          label: "Show Create/Update/Delete Items"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core_Collapse__WEBPACK_IMPORTED_MODULE_10__.default, {
+          "in": checkedItem,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_11__.default, {
+            elevation: 4,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_CreateItems__WEBPACK_IMPORTED_MODULE_4__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_DisplayItemUser__WEBPACK_IMPORTED_MODULE_5__.default, {})]
+          })
+        })]
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Userpage);
+
+if (document.getElementById('userPage')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Userpage, {}), document.getElementById('userPage'));
 }
 
 /***/ }),
