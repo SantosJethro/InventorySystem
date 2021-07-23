@@ -16,7 +16,7 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import EditUser1 from './editUser';
+import EditItem from './editItem';
 import DialogContent from '@material-ui/core/DialogContent';
 import Modal from '@material-ui/core/Modal';
 import { Replay10Rounded, SettingsInputComponent, SettingsPowerRounded } from '@material-ui/icons';
@@ -96,7 +96,8 @@ function DisplayItem() {
     },
        )
       };
-    const EditUser = ($id) => {
+
+  const editItem = ($id) => {
       
      handleOpen();
      setkeyId($id);
@@ -116,7 +117,7 @@ function DisplayItem() {
       },
       body: JSON.stringify(id),
     }
-    if(confirm("Delete this User?")){
+    if(confirm("Delete this Item?")){
 console.log($id)
     fetch(`itemCrud/delete/${id}`,request)
     .then(response=> response.json())
@@ -127,7 +128,7 @@ console.log($id)
     },
        )
     }else{
-      alert('Delete User Failed')
+      alert('Delete Item Failed')
     }
      };
     
@@ -140,7 +141,7 @@ console.log($id)
       
       <div>
       
-      {/* <EditUser open onclose id={id}/> */}
+      {/* <editItem open onclose id={id}/> */}
      
     <TableContainer component={Paper}>
       <Table aria-label="customized table">
@@ -172,7 +173,7 @@ console.log($id)
 
 
                 <StyledTableCell>
-                  <button onClick={() => EditUser(list.Id)} style={{ borderRadius: 20, backgroundColor: "#F8EA8C", padding: "10px 10px",fontSize: "15px"}} >
+                  <button onClick={() => editItem(list.Id)} style={{ borderRadius: 20, backgroundColor: "#F8EA8C", padding: "10px 10px",fontSize: "15px"}} >
                     Edit 
                    
                   </button > 
@@ -188,7 +189,7 @@ console.log($id)
         </TableBody>
       </Table>
     </TableContainer>
-    <EditUser1 keysId={keyId} isDialogOpened={isOpen} handleCloseDialog={() => setIsOpen(false)}/>
+    <EditItem keysId={keyId} isDialogOpened={isOpen} handleCloseDialog={() => setIsOpen(false)}/>
             
        
      </div>

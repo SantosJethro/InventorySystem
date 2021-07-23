@@ -52,14 +52,17 @@ class CRUDuser extends Controller
            $usertype= $request->usertype;
            $allow= $request->allow;
         //    return response()->json([$usertype,$allow],200);
-        
-                $insertUser=DB::insert("insert into users (Username,Password,Name,UserType,Allow) values (?,?,?,?,?)",[$username,$password,$name,$usertype,$allow]);
-            if($insertUser){
-                return response()->json(["Success"],200);
+           $exist=DB::select("select username from users where username='$username'");
+            if ($exist) {
+                return response()->json(["responseText" => "$username already exist","isError" => true],422);
             }else{
-                return response()->json(['responseTExt' => 'ERROR TRY AGAIN'],422);
-            }
-
+                $insertUser=DB::insert("insert into users (Username,Password,Name,UserType,Allow) values (?,?,?,?,?)",[$username,$password,$name,$usertype,$allow]);
+                if($insertUser){
+                    return response()->json(["Success"],200);
+                }else{
+                    return response()->json(['responseTExt' => 'ERROR TRY AGAIN'],422);
+                }
+        }
 
     }
 

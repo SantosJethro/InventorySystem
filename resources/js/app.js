@@ -22,6 +22,9 @@ require('./components/Example');
 require('./components/formLogin');
 require('./components/Logo');
 require('./components/navbar');
+require('./components/profile');
+require('./components/trial');
 require('./components/trials');
+
 
 // require('./components/app1');

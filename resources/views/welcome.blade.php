@@ -26,9 +26,12 @@
     {{-- <div id="CreateItem">
         <script src="{{ asset('js/app.js') }}"></script>
     </div> --}}
-    <div id="DisplayItem">
+    <div id="Profile">
         <script src="{{ asset('js/app.js') }}"></script>
     </div>
+    {{-- <div id="RecipeReviewCard">
+        <script src="{{ asset('js/app.js') }}"></script>
+    </div> --}}
     
 </body>
 

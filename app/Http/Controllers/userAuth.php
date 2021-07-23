@@ -29,19 +29,22 @@ class userAuth extends Controller
                 // return $FindUser;
                 
                 foreach ($FindUser as $found){
-                    $userID = $found->Id;
+                    $userID = $found->UserId;
                     $allow = $found->Allow;
                     $userUN = $found->Username;
                     $userP = $found->Password;
                     $userT = $found->UserType;
+                    $Name = $found->Name;
                    break;
                 }
+                session()->put('Id',$UserId);
+                session()->put('Name',$Name);
                  session()->put('Username',$username);
                  session()->put('Password',$password);
                  session()->put('IsLogIn',$IsLogIn);
-                 session()->put('Id',$userID);
                  session()->put('userT',$userT);
                  session()->put('userA',$allow);
+                 session()->put('Name',$Name);
                  
                 return response()->json([
                             'id' => $userID ,

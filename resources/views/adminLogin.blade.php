@@ -33,7 +33,6 @@
 @foreach($name as $data)
 
 <tr>
-    <td>{{ $data->Id}}</td> 
     <td>{{ $data->Name}}</td> 
     <td>{{ $data->Username}}</td>
     <td>{{ $data->Password}}</td>
@@ -41,8 +40,8 @@
     <td>{{ $data->Allow}}</td>
     <td>{{ $data->created_at}}</td>
     <td>{{ $data->updated_at}}</td>
-    <td><a href="./users/{{$data->Id}}/update"><button class="btn btn-warning">Edit</button></a></td>
-    <td><a href="./users/{{$data->Id}}/delete"><button class="btn btn-danger">Delete</button></a></td>
+    <td><a href="./users/{{$data->UserId}}/update"><button class="btn btn-warning">Edit</button></a></td>
+    <td><a href="./users/{{$data->UserId}}/delete"><button class="btn btn-danger">Delete</button></a></td>
    
 </tr>
 @endforeach

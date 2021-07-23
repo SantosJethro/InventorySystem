@@ -50,10 +50,10 @@ class CRUDitem extends Controller
             $ItemName=$request->ItemName;
             $ItemDesc=$request->ItemDesc;
             $ItemQuantity=$request->ItemQuantity;
-            $userId= 2;
-            $modifiedBy= 'Name2';
+            $userId= session('Id');
+            $modifiedBy= session('Name');
 
-        //  return response()->json([$ItemName,$ItemDesc,$ItemQuantity,$userId,$modifiedBy],200);
+        //   return response()->json([$ItemName,$ItemDesc,$ItemQuantity,$userId,$modifiedBy],200);
             $insertUser=DB::insert("insert into table_items (ItemName,ItemDesc,ItemQuantity,UserId,modifiedBy) values (?,?,?,?,?)",[$ItemName,$ItemDesc,$ItemQuantity,$userId,$modifiedBy]);
             if($insertUser){
                     return response()->json(["Success"],200);
@@ -72,7 +72,9 @@ class CRUDitem extends Controller
     public function show($id)
     {
         //
-        $selectItem = DB::select("select * from table_item where id=$id");
+        
+      
+        $selectItem = DB::select("select * from table_items where id=$id");
         if($selectItem){
                 return response()-> json(["data1Item" => $selectItem],200);
         }else{
@@ -103,14 +105,14 @@ class CRUDitem extends Controller
     public function update(Request $request, $id)
     {
         //
-        $ItemName= $request->New;
-        $ItemDesc= $request->New;
-        $ItemQuantity= $request->New;
-        $userId= 2;
-        $modifiedBy= 'Name2';
+        $ItemName= $request->NewItemName;
+        $ItemDesc= $request->NewItemDesc;
+        $ItemQuantity= $request->NewItemQuantity;
+        $userId= session('Id');
+        $modifiedBy= session('Name');
         //  return response()->json([$ItemName,$ItemDesc,$ItemQuantity,$userId,$modifiedBy],200);
 
-            $updateUser=DB::update("update table_item set ItemName='$ItemName', ItemDesc='$ItemDesc', ItemQuantity='$ItemQuantity', userId=$userId,modifiedBy='$' where Id=$id");
+            $updateUser=DB::update("update table_items set ItemName='$ItemName', ItemDesc='$ItemDesc', ItemQuantity='$ItemQuantity', userId=$userId,modifiedBy='$modifiedBy' where Id=$id");
             if($updateUser){
                 return response()->json(["Success"],200);
             }else{
@@ -127,7 +129,7 @@ class CRUDitem extends Controller
     public function destroy($id)
     {
         //
-        $deleted = DB::delete("delete from users where id=$id");
+        $deleted = DB::delete("delete from table_items where id=$id");
         if($deleted){
             return response()->json(["Success"],200);
         }else{

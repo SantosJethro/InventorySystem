@@ -163,26 +163,26 @@ function EditUser(props) {
             <Grid item xs={6}>
             <Dialog style={{height:'800px'}} open={isDialogOpened} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
                 <DialogTitle id="form-dialog-title">Update User</DialogTitle>
-                <DialogContent>
+                <DialogContent style={{backgroundColor: "Black"}}>
                 <DialogContentText>
                 <button style={{ borderRadius: 20, backgroundColor: "#00FF00", padding: "10px 10px",fontSize: "15px"}} onClick={read1}>Click To Get Details</button>
                 </DialogContentText>
                
-                  <TextField id="Name" label="Input Name" InputLabelProps={{shrink:true}} variant="outlined" value={NewName} onChange={(event)=>setNewName(event.target.value)} fullWidth/>
+                  <TextField style={{backgroundColor: "white"}} id="Name" label="Input Name" InputLabelProps={{shrink:true}} variant="filled" value={NewName} onChange={(event)=>setNewName(event.target.value)} fullWidth/>
                 
                 <br/>
                 <br/>
                 
-                  <TextField id="Username" label="Input Username" InputLabelProps={{shrink:true}} variant="outlined" value={NewUsername}  onChange={(event)=>setNewUsername(event.target.value)} fullWidth/>
+                  <TextField style={{backgroundColor: "white"}} id="Username" label="Input Username" InputLabelProps={{shrink:true}} variant="filled" value={NewUsername}  onChange={(event)=>setNewUsername(event.target.value)} fullWidth/>
                 
                   <br/>
                   <br/>
               
-                  <TextField id="Password" label="Input Password" InputLabelProps={{shrink:true}} variant="outlined" value={NewPassword} onChange={(event)=>setNewPassword(event.target.value)} fullWidth/>
+                  <TextField style={{backgroundColor: "white"}} id="Password" label="Input Password" InputLabelProps={{shrink:true}} variant="filled" value={NewPassword} onChange={(event)=>setNewPassword(event.target.value)} fullWidth/>
               
                   <br/>
                   <br/>
-                <FormControl variant="outlined" className={classes.formControl}>
+                <FormControl variant="filled" className={classes.formControl} style={{backgroundColor: "white"}}>
                   <InputLabel id="Allow">Allow</InputLabel>
                   <Select labelId="Allow" id="Allow" label="Allow" value={NewAllow} onChange={(event)=>setNewAllow(event.target.value)}>
                     <MenuItem value={NewAllow}>

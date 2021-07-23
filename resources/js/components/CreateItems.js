@@ -1,42 +1,44 @@
 import ReactDOM from 'react-dom';
 import React, { useState, useEffect } from 'react';
 import { withStyles,makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
+import TextField from '@material-ui/core/TextField';import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import Avatar from '@material-ui/core/Avatar';
+import { red } from '@material-ui/core/colors';
+import SaveIcon from '@material-ui/icons/Save';
 
 
 const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
   root: {
-    flexGrow: 1,
+    maxWidth: 345,
   },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: '#03a9f4' ,
+    backgroundColor: red[500],
   },
-  title:{
-        variant:'h1'
-  },
-
 }));
 
 
 
 function CreateItemF() {
+  const classes1 = useStyles();
   const [ItemName, setItemName] = useState();
   const [ItemDesc, setItemDesc] = useState();
   const [ItemQuantity, setItemQuantity] = useState();
@@ -97,79 +99,46 @@ function CreateItemF() {
   
   
     return (
-      <div>
-              <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                  Open form dialog
-              </Button>
+      <div style={{ backgroundColor: '#CACACA'}}>
               <Grid container spacing={3}>
-                <Grid item xs={3}></Grid>
+ 
                   <Grid item xs={6}>
-                  
-                          <div className='form-group'>
-                            <Grid container spacing={1} alignItems="flex-end">
-                              <div>
-                                <Grid item>
-                                <TextField label="Enter Item Name" id="ItemName" name="ItemName" onChange={(event)=>setItemName(event.target.value)} type="text" fullWidth/>
-                                </Grid>
-                              </div>
-                            </Grid>
-                          </div>
+                  <Card className={classes1.root} style={{backgroundColor: "Black"}}>
+                            <CardHeader
+                                    avatar={
+                                      <Avatar aria-label="recipe" className={classes1.avatar}>
+                                        R
+                                      </Avatar>
+                                    }
+                                    title="RADJ telcom Network Service" style={{color: "white"}}
+                            />
+                            <CardContent>
+                                      <Grid container spacing={1}>
+                                        <Grid item xs={12}>
+                                            <TextField style={{backgroundColor: "white"}} variant="filled" label="Enter Item Name" id="ItemName" name="ItemName" onChange={(event)=>setItemName(event.target.value)} type="text" fullWidth/>
+                                            <br/>
 
-                          <div className='form-group'>
-                            <Grid container spacing={1} alignItems="flex-end">
-                              <TextField label="Enter ItemDesc" id="ItemDesc" name="ItemDesc" onChange={(event)=>setItemDesc(event.target.value)} type="text"/>
-                          </Grid>
-                          </div>
-                        
-                        
-                              <Grid container spacing={1} alignItems="flex-end">
-                                <Grid item>
-                                  <TextField id="ItemQuantity" label="Enter Item Quantity" onChange={(event)=>setItemQuantity(event.target.value)} type="text" fullWidth={true} />
-                                </Grid>
-                              </Grid>
+                                            <TextField style={{backgroundColor: "white"}} variant="filled" label="Enter ItemDesc" id="ItemDesc" name="ItemDesc" onChange={(event)=>setItemDesc(event.target.value)} type="text" fullWidth/>
+                                            <br/>
+                                            <TextField style={{backgroundColor: "white"}} variant="filled" id="ItemQuantity" label="Enter Item Quantity" onChange={(event)=>setItemQuantity(event.target.value)} type="text" fullWidth/>
+                                            <br/>
+                                            <br/>
+                                            <Button style={{backgroundColor: "green"}} onClick={CreateItem} variant="outlined" endIcon={<SaveIcon />}>
+                                              Create Item
+                                            </Button>
+                                        </Grid>
+                                      </Grid>
+                            </CardContent>
+                          </Card>
                           
 
-          
-                        
                           
-                              <Grid item xs={5}>
-                                  <Button onClick={CreateItem}>
-                                Create Item
-                                </Button>
-                              </Grid>
                         
                   </Grid>
                  <Grid item xs={3}></Grid> 
               </Grid>
-              
-            
-              {/* <Dialog style={{height:'800px'}} open={isDialogOpened} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
-                <DialogTitle id="form-dialog-title">Create User</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                    
-                    </DialogContentText>
-                  
-                    <TextField label="Enter Item Name" id="ItemName" name="ItemName" onChange={(event)=>setItemName(event.target.value)} type="text" fullWidth/>
-                    <br/>
-                    <br/>
-                    <TextField label="Enter ItemDesc" id="ItemDesc" name="ItemDesc" onChange={(event)=>setItemDesc(event.target.value)} type="password"/>
-                    <br/>
-                    <br/>
-                    <TextField id="Password" label="Input Password" InputLabelProps={{shrink:true}} variant="outlined" value={NewPassword} onChange={(event)=>setNewPassword(event.target.value)} fullWidth/>
-
-                </DialogContent>
-                <DialogActions>
-                <Button onClick={CreateItem} color="primary">
-                    CreateItem
-                </Button>
-                <Button onClick={cancel} color="primary">
-                    Cancel
-                </Button>
-                
-                </DialogActions>
-            </Dialog> */}
-
+              <br/>
+               <br/>
        </div>       
     )
   }
@@ -178,5 +147,5 @@ function CreateItemF() {
 
 export default CreateItemF;
 if (document.getElementById('CreateItem')) {
-    ReactDOM.render(<CreateItemF />, document.getElementById('CreateItem'));
+    ReactDOM.render(<CreateItems />, document.getElementById('CreateItem'));
  }

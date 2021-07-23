@@ -2,73 +2,59 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './navbar';
-// import Login from './formLogin';
-import CreateuserF from './CreateUserF';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Modal from '@material-ui/core/Modal';
-import DialogContent from '@material-ui/core/DialogContent';
+import Switch from '@material-ui/core/Switch';
+import Paper from '@material-ui/core/Paper';
+import Collapse from '@material-ui/core/Collapse';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const useStyles = makeStyles((theme ) => ({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-function Adminpage() {
-    
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+import CreateUserF from './CreateUserF';
+import DisplayUs from './DisplayUser';
 
-  const handleOpen = () => {
-    setOpen(true);
+import CreateItemF from './CreateItems';
+import DisplayItem from './DisplayItem';
+
+function Adminpage() {  
+  const [checkedUser, setCheckedUser] = React.useState(false);
+  const [checkedItem, setCheckedItem] = React.useState(false);
+
+  const handleChangeUser = () => {
+    setCheckedUser((prev) => !prev);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleChangeItem = () => {
+    setCheckedItem((prev) => !prev);
   };
 
-  const body = (
-    <div style={{}} className={classes.paper}>
-      <h2 id="simple-modal-title">Text in a modal</h2>
-      <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-      </p>
-      <Adminpage />
-    </div>
-  );
     return (
       
-        <div>
+        <div style={{ backgroundColor: '#B9B49E'}}>
             <Navbar />
-            <Grid container spacing={3}>
-                <Grid item xs={5}></Grid>
-                <Grid item xs={8}>
-                <button type="button" variant="contained" color="primary" onClick={handleOpen}>
-        Create Users
-      </button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-          <DialogContent>
-          <CreateuserF />
-                </DialogContent>
-                
-        
-      </Modal>
-      <CreateuserF />
+            <Grid container spacing={1}>
+                <Grid item xs={1}></Grid>
+                <Grid item xs={10}>
+                <FormControlLabel
+                      control={<Switch checked={checkedUser} onChange={handleChangeUser} />}
+                      label="Show Create/Update/Delete Users"
+                    />
+                      <Collapse in={checkedUser}>
+                        <Paper elevation={4}>
+                          <CreateUserF />
+                          
+                          <DisplayUs />
+                        </Paper>
+                      </Collapse>
+
+                      <FormControlLabel
+                      control={<Switch checked={checkedItem} onChange={handleChangeItem} />}
+                      label="Show Create/Update/Delete Items"
+                    />
+                      <Collapse in={checkedItem}>
+                        <Paper elevation={4}>
+                          <CreateItemF />
+                          <DisplayItem />
+                        </Paper>
+                      </Collapse>
                 </Grid>
             </Grid>
         </div>
