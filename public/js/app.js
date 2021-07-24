@@ -21734,11 +21734,11 @@ function CreateItemF() {
   };
 
   var CreateItem = function CreateItem() {
-    if (ItemName == null) {
+    if (ItemName == null || ItemName == "") {
       alert("Error Item name cannot be empty");
-    } else if (ItemDesc == null) {
+    } else if (ItemDesc == null || ItemDesc == "") {
       alert("Error Item Description cannot be empty");
-    } else if (ItemQuantity == null) {
+    } else if (ItemQuantity == null || ItemQuantity == "") {
       alert("Error Item Quantity cannot be empty");
     } else {
       var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -21990,15 +21990,15 @@ function CreateUserF() {
       setAllow = _useState10[1];
 
   var CreateUser = function CreateUser() {
-    if (Name == null) {
+    if (Name == null || Name == "") {
       alert("Error Name cannot be empty");
-    } else if (Username == null) {
+    } else if (Username == null || Username == "") {
       alert("Error Username cannot be empty");
-    } else if (Password == null) {
+    } else if (Password == null || Password == "") {
       alert("Error Password cannot be empty");
-    } else if (Usertype == null) {
+    } else if (Usertype == null || Usertype == "") {
       alert("Error Please Select Admin or Stockman");
-    } else if (Allow == null) {
+    } else if (Allow == null || Allow == "") {
       alert("Error Please Select Yes or No");
     } else {
       var token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -23746,9 +23746,13 @@ function EditUser(props) {
       fetch("./userCrud/update/".concat(keysId), request).then(function (response) {
         return response.json();
       }).then(function (result) {
-        console.log(result);
-        handleClose();
-        window.location = './redirect';
+        if (result.isError) {
+          alert(result.responseText);
+        } else {
+          console.log(result);
+          handleClose();
+          window.location = './redirect';
+        }
       });
     }
   };
@@ -24927,8 +24931,8 @@ function Userpage() {
         fetch("./userCrud/updatePass", request).then(function (response) {
           return response.json();
         }).then(function (result) {
+          window.location = './LogOut';
           console.log(result);
-          window.location = './redirect';
         });
       } else {
         alert("Password Change Aborted");

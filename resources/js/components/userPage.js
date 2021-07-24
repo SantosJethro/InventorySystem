@@ -53,10 +53,11 @@ function Userpage() {
             console.log('Password Change');
             fetch(`./userCrud/updatePass`,request)
             .then(response=> response.json())
+            
             .then((result)=> {
-              
+              window.location = './LogOut'
               console.log(result);
-              window.location = './redirect'
+              
         
           });
 

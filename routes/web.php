@@ -61,7 +61,6 @@ Route::get('/LogOut', function () {
     return redirect('LogIn');
 });
 //login
-//Route::post("user",[userAuth::class,'userLogin']);
 Route::post('userLog', 'App\Http\Controllers\userAuth@userLogin');
 Route::view("userLogin","userLogin");
 
@@ -71,8 +70,6 @@ Route::get('/welcome', function () {
 });
 
 
-// Route::resource('/userCrud','./CRUDuser');
-// Route::post('userLog', 'App\Http\Controllers\userAuth@userLogin');
 
 //Profile
 Route::get('userCrud/profile/{id}', 'App\Http\Controllers\CRUDuser@prof');

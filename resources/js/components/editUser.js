@@ -137,10 +137,13 @@ function EditUser(props) {
             fetch(`./userCrud/update/${keysId}`,request)
             .then(response=> response.json())
             .then((result)=> {
-              
-              console.log(result);
-              handleClose()
-              window.location = './redirect'
+              if(result.isError) {
+                alert(result.responseText)
+              }else {
+                console.log(result);
+                handleClose()
+                window.location = './redirect';
+              }
         
       });
     }

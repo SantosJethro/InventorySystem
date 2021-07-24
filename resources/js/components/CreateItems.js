@@ -64,13 +64,13 @@ function CreateItemF() {
 
 
   const CreateItem = () => {
-    if(ItemName == null){
+    if(ItemName == null  || ItemName == ""){
       alert("Error Item name cannot be empty")
       
-    }else if(ItemDesc == null){
+    }else if(ItemDesc == null  || ItemDesc == ""){
       alert("Error Item Description cannot be empty")
      
-    }else if(ItemQuantity == null){
+    }else if(ItemQuantity == null  || ItemQuantity == ""){
       alert("Error Item Quantity cannot be empty")
       
     }else{

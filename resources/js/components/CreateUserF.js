@@ -55,19 +55,19 @@ function CreateUserF() {
 
 
   const CreateUser = () => {
-    if(Name == null){
+    if(Name == null || Name == ""){
       alert("Error Name cannot be empty")
       
-    }else if(Username == null){
+    }else if(Username == null  || Username == ""){
       alert("Error Username cannot be empty")
      
-    }else if(Password == null){
+    }else if(Password == null  || Password == ""){
       alert("Error Password cannot be empty")
 
-    }else if(Usertype == null){
+    }else if(Usertype == null  || Usertype == ""){
       alert("Error Please Select Admin or Stockman")
 
-    }else if(Allow == null){
+    }else if(Allow == null  || Allow == ""){
       alert("Error Please Select Yes or No")
     }else{
           const token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');

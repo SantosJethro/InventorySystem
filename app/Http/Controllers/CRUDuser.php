@@ -127,6 +127,11 @@ class CRUDuser extends Controller
         $password= $request->NewPassword;
         $name= $request->NewName;
         $allow= $request->NewAllow;
+        
+        $exist=DB::select("select username from users where username='$username'");
+        if ($exist) {
+            return response()->json(["responseText" => "$username already exist","isError" => true],422);
+        }else{
         // return response()->json([$username,$password,$name,$allow,'Id:',$id],200);
             // $updateUser=DB::update("update users (Username,Password,Name,Allow) values (?,?,?,?) where id =$id ", [$username,$password,$name,$allow]);
             $updateUser=DB::update("update users set Username='$username', Password='$password', Name='$name', Allow=$allow where UserId=$id");
@@ -135,7 +140,7 @@ class CRUDuser extends Controller
             }else{
                 return response()->json(['responseTExt' => 'ERROR TRY AGAIN'],422);
             }
-
+         }
     }
 
     public function update1(Request $request)
